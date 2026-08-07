@@ -1,0 +1,10 @@
+quantity,value,unit,source
+station-horizon pairs with saved predictions,42.0,pairs,results/predictions/
+total stored test predictions,209993.0,samples,results/predictions/
+models per pair,3.0,models,"y_true, fame, unified_xgb, persistence"
+LSTM band expert training (exact architecture),966.0429,s/pair,measured; runtime_probe.json
+XGBoost hourly expert training,4.9435,s/pair,measured; runtime_probe.json
+Ridge trend expert training,0.0093,s/pair,measured; runtime_probe.json
+causal decomposition,8.0848,s/station,measured; runtime_probe.json
+"proposed model, one pair",970.9957,s,measured; runtime_probe.json
+one 42-pair grid,11.3283,h,measured; runtime_probe.json

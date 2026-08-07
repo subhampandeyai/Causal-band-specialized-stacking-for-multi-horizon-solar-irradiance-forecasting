@@ -1,0 +1,156 @@
+# Fully pinned environment for reproducing the published results.
+#
+# Provenance: these versions were captured from the Python environment that
+# actually produced the results in this repository, not from a fresh install.
+# They were cross-checked against the version record written at run time
+# (provenance_stage_03_multiseed.json); the packages used by the pipeline and the analyses agree
+# exactly. Any package below that the code does not import is an incidental
+# dependency of that environment and is pinned for completeness.
+#
+# Python 3.9.13 (CPython). The pins below assume this interpreter; several
+# packages resolve to different builds on other Python versions.
+#
+# Install:
+#     python -m venv venv
+#     venv/Scripts/activate        (Windows)  |  source venv/bin/activate  (POSIX)
+#     pip install -r requirements-lock.txt
+#
+# requirements.txt holds the loose, human-readable dependency list. Use this
+# lock file when the objective is to reproduce the reported numbers exactly.
+#
+# Cross-checked against the run-time record:
+#     PyWavelets     1.6.0
+#     PyYAML         6.0.3
+#     lightgbm       4.6.0
+#     matplotlib     3.9.4
+#     numpy          2.0.2
+#     pandas         2.3.3
+#     scikit-learn   1.6.1
+#     scipy          1.13.1
+#     tensorflow     2.20.0
+#     xgboost        2.1.4
+#
+
+absl-py==2.3.1
+aiohappyeyeballs==2.6.1
+aiohttp==3.13.5
+aiosignal==1.4.0
+asttokens==3.0.1
+astunparse==1.6.3
+async-timeout==5.0.1
+attrs==26.1.0
+autograd-gamma==0.5.0
+autograd==1.8.0
+certifi==2026.2.25
+charset-normalizer==3.4.6
+cloudpickle==3.1.2
+colorama==0.4.6
+contourpy==1.3.0
+cycler==0.12.1
+decorator==5.3.1
+dill==0.4.1
+EMD-signal==1.9.0
+et_xmlfile==2.0.0
+exceptiongroup==1.3.1
+executing==2.2.1
+filelock==3.19.1
+flatbuffers==25.12.19
+fonttools==4.60.2
+formulaic==1.2.1
+frozenlist==1.8.0
+fsspec==2025.10.0
+gast==0.7.0
+google-pasta==0.2.0
+grpcio==1.78.0
+h5py==3.14.0
+highspy==1.15.1
+idna==3.11
+importlib_metadata==8.7.1
+importlib_resources==6.5.2
+iniconfig==2.1.0
+interface-meta==1.3.0
+ipython==8.18.1
+jedi==0.19.2
+Jinja2==3.1.6
+joblib==1.5.3
+kagglehub==0.3.13
+keras==3.10.0
+kiwisolver==1.4.7
+libclang==18.1.1
+lifelines==0.30.0
+lightgbm==4.6.0
+lightning-utilities==0.15.2
+lightning==2.6.0
+llvmlite==0.43.0
+markdown-it-py==3.0.0
+Markdown==3.9
+MarkupSafe==3.0.3
+matplotlib-inline==0.2.2
+matplotlib==3.9.4
+mdurl==0.1.2
+ml_dtypes==0.5.4
+mpmath==1.3.0
+multidict==6.7.1
+multiprocess==0.70.19
+namex==0.1.0
+narwhals==2.20.0
+networkx==3.2.1
+ngboost==0.5.10
+numba==0.60.0
+numpy==2.0.2
+openpyxl==3.1.5
+opt_einsum==3.4.0
+optree==0.19.0
+packaging==26.0
+pandas==2.3.3
+parso==0.8.7
+pathos==0.3.5
+patsy==1.0.2
+pillow==11.3.0
+pluggy==1.6.0
+pox==0.3.7
+ppft==1.7.8
+prompt_toolkit==3.0.52
+propcache==0.4.1
+protobuf==6.33.6
+pure_eval==0.2.3
+Pygments==2.19.2
+pyparsing==3.3.2
+pytest==8.4.2
+python-dateutil==2.9.0.post0
+pytorch-forecasting==1.4.0
+pytorch-lightning==2.6.0
+pytz==2026.1.post1
+PyWavelets==1.6.0
+PyYAML==6.0.3
+requests==2.32.5
+rich==14.3.3
+scikit-learn==1.6.1
+scipy==1.13.1
+seaborn==0.13.2
+shap==0.49.1
+six==1.17.0
+slicer==0.0.8
+stack-data==0.6.3
+statsmodels==0.14.6
+sympy==1.14.0
+tensorboard-data-server==0.7.2
+tensorboard==2.20.0
+tensorflow==2.20.0
+termcolor==3.1.0
+threadpoolctl==3.6.0
+tomli==2.4.1
+torch==2.8.0+cpu
+torchmetrics==1.8.2
+tqdm==4.67.3
+traitlets==5.15.0
+typing_extensions==4.15.0
+tzdata==2025.3
+urllib3==2.6.3
+vmdpy==0.2
+wcwidth==0.7.0
+Werkzeug==3.1.7
+wrapt==2.1.2
+xgboost==2.1.4
+yarl==1.22.0
+zipp==3.23.0

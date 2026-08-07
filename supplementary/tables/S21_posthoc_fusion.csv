@@ -1,0 +1,5 @@
+variant,comparison_class,n,mean_r2,mean_rmse_W,mean_mae_W,mean_skill
+"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,42,0.929862,67.329764,45.60582,0.074522
+[ORACLE] best_single per pair,oracle,42,0.927378,68.326173,45.036919,0.049685
+"proposed (manuscript, no test access)",fair,42,0.919388,72.381362,51.427941,-0.079009
+"equal_average(uxgb,pers)",fair,42,0.86484,91.388884,67.854148,-0.997198

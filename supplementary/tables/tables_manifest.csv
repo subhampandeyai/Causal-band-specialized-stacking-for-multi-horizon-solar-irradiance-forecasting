@@ -1,0 +1,26 @@
+table,source,status,n_rows,caption
+S1_consistency_summary,Implementation_Audit/consistency_summary.csv,OK,6,Reported vs recomputed metrics from the manuscript's own predictions
+S2_consistency_perpair,Implementation_Audit/consistency_perpair.csv,OK,42,Per-pair consistency verification (all 42 station-horizon pairs)
+S3_consistency_aggregate,Implementation_Audit/consistency_aggregate.csv,OK,12,Per-horizon aggregate consistency against the reported six-model table
+S4_implementation_audit,Implementation_Audit/implementation_audit.csv,OK,8,Implementation audit: executed correctness checks on the frozen implementation
+S5_baseline_fairness,Baseline_Audit/baseline_fairness_audit.csv,OK,7,Baseline fairness audit (documented; baselines not rerun)
+S6_paired_tests,Statistics/paired_tests.csv,OK,49,"Wilcoxon signed-rank, Cohen's d_z and 95% CIs, per horizon and aggregated"
+S7_holm_bonferroni,Statistics/holm_bonferroni.csv,OK,42,Holm-Bonferroni correction across the per-horizon families
+S8_bootstrap_ci,Statistics/bootstrap_ci_skill.csv,OK,21,"Bootstrap 95% confidence intervals on the skill score (10,000 resamples)"
+S9_win_loss,Statistics/win_loss_record.csv,OK,14,Win/loss record against each baseline
+S10_conformal_summary,Uncertainty/conformal_summary_by_model.csv,OK,6,"Split-conformal calibration and efficiency, all stations and horizons"
+S11_conformal_by_horizon,Uncertainty/conformal_by_horizon.csv,OK,36,Conformal coverage and interval width by horizon
+S12_conformal_by_station,Uncertainty/conformal_by_station.csv,OK,42,Conformal coverage and interval width by station
+S13_conformal_crosscheck,Uncertainty/manuscript_station5_crosscheck.csv,OK,12,Cross-check of the manuscript's Station-5 conformal table
+S14_station_robustness,Robustness/station_robustness.csv,OK,7,Robustness across the seven stations
+S15_horizon_robustness,Robustness/horizon_robustness.csv,OK,6,Robustness across the six horizons
+S16_degradation,Robustness/degradation_trends.csv,OK,7,"Skill degradation with lead time, per station"
+S17_failure_cases,Robustness/failure_cases.csv,OK,26,Every station-horizon pair where the proposed model is not superior
+S18_error_structure,Robustness/error_structure.csv,OK,126,"Residual bias, shape and autocorrelation by model"
+S19_conditional_skill,Robustness/conditional_skill_summary.csv,OK,3,Performance stratified by irradiance regime
+S20_per_pair_metrics,Raw_Data/per_pair_metrics.csv,OK,42,All metrics for all models on all 42 station-horizon pairs
+S21_posthoc_fusion,Ablation/posthoc_fusion_summary.csv,OK,4,"Post-hoc fusion of saved predictions (oracle rows are upper bounds, not competitors)"
+S22_fusion_headtohead,Ablation/posthoc_fusion_fair_headtohead.csv,OK,1,Fair head-to-head among variants with no test-block access
+S23_proposed_vs_baselines,Ablation/proposed_vs_baselines_eval_half.csv,OK,42,Manuscript model vs each baseline on the identical evaluation half
+S24_scope_declaration,Sensitivity/scope_declaration.csv,OK,12,"Which analyses are computable from frozen outputs, and which require retraining"
+S25_computational_facts,Computational_Cost/measured_computational_facts.csv,OK,9,Measured computational facts from the frozen artifacts

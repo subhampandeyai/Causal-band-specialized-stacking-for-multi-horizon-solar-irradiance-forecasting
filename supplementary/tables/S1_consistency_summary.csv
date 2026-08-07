@@ -1,0 +1,7 @@
+metric,n,max_abs_diff,mean_abs_diff,tolerance,n_within_tolerance,all_agree
+fame_r2,42,4.899e-05,2.392e-05,0.0005,42,True
+fame_rmse_W,42,0.00487502,0.00254124,0.005,42,True
+fame_mae_W,42,0.00474414,0.002349,0.005,42,True
+uxgb_r2,42,4.673e-05,2.449e-05,0.0005,42,True
+uxgb_rmse_W,42,0.00492349,0.00235701,0.005,42,True
+uxgb_mae_W,42,0.00479436,0.0024552,0.005,42,True

@@ -1,0 +1,25 @@
+variant,horizon,mean_skill,mean_rmse_W
+[ORACLE] best_single per pair,H1,0.2981,59.0352
+[ORACLE] best_single per pair,H16,0.0,70.2012
+[ORACLE] best_single per pair,H32,0.0,70.2004
+[ORACLE] best_single per pair,H4,0.0,70.1953
+[ORACLE] best_single per pair,H8,0.0,70.1958
+[ORACLE] best_single per pair,H96,0.0,70.1292
+"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",H1,0.3095,58.562
+"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",H16,-0.0021,70.1278
+"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",H32,-0.0141,70.7274
+"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",H4,0.1185,65.8592
+"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",H8,0.0372,68.5636
+"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",H96,-0.0018,70.1387
+"equal_average(uxgb,pers)",H1,0.2504,60.9322
+"equal_average(uxgb,pers)",H16,-1.1054,97.2867
+"equal_average(uxgb,pers)",H32,-1.7986,110.2115
+"equal_average(uxgb,pers)",H4,0.0312,68.7914
+"equal_average(uxgb,pers)",H8,-0.3348,79.4807
+"equal_average(uxgb,pers)",H96,-3.026,131.6307
+"proposed (manuscript, no test access)",H1,0.3161,58.215
+"proposed (manuscript, no test access)",H16,-0.2773,79.3676
+"proposed (manuscript, no test access)",H32,-0.2892,79.2319
+"proposed (manuscript, no test access)",H4,0.0982,66.4841
+"proposed (manuscript, no test access)",H8,-0.1002,73.5392
+"proposed (manuscript, no test access)",H96,-0.2218,77.4505

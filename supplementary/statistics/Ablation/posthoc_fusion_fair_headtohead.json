@@ -1,0 +1,9 @@
+[
+  {
+    "comparison":"proposed vs equal_average(uxgb,pers)",
+    "n":42,
+    "mean_rmse_diff_W":-19.007522,
+    "proposed_better_in":40,
+    "proposed_worse_in":2
+  }
+]

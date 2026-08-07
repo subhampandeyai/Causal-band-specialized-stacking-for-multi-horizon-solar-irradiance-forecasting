@@ -1,0 +1,74 @@
+[
+  {
+    "analysis":"Sensitivity: wavelet basis (haar\/db2\/db4\/db6\/db8\/sym4\/coif2)",
+    "computable_from_frozen_outputs":false,
+    "reason":"changing the basis changes the decomposition, so every band expert and the meta-learner must be refitted",
+    "available_in":"not run for this revision"
+  },
+  {
+    "analysis":"Sensitivity: trailing-window length W (128-2048)",
+    "computable_from_frozen_outputs":false,
+    "reason":"the window defines the causal band values; new bands require retraining",
+    "available_in":"not run for this revision"
+  },
+  {
+    "analysis":"Sensitivity: decomposition level J (1-5)",
+    "computable_from_frozen_outputs":false,
+    "reason":"the level defines how many bands exist; the expert pool changes",
+    "available_in":"not run for this revision"
+  },
+  {
+    "analysis":"Sensitivity: meta-learner ridge alpha",
+    "computable_from_frozen_outputs":false,
+    "reason":"the saved files store the FUSED forecast, not the four individual band forecasts, so the meta-learner cannot be refitted from them",
+    "available_in":"not run for this revision"
+  },
+  {
+    "analysis":"Ablation: remove a band expert (trend\/daily\/hourly\/noise)",
+    "computable_from_frozen_outputs":false,
+    "reason":"individual band forecasts are not stored in the released predictions",
+    "available_in":"not run for this revision"
+  },
+  {
+    "analysis":"Ablation: causal vs whole-series decomposition",
+    "computable_from_frozen_outputs":false,
+    "reason":"requires refitting under a different decomposition regime",
+    "available_in":"not run for this revision"
+  },
+  {
+    "analysis":"Multi-seed variance of the proposed model",
+    "computable_from_frozen_outputs":false,
+    "reason":"the manuscript's run used a single fixed seed (42); additional seeds require retraining",
+    "available_in":"not run for this revision"
+  },
+  {
+    "analysis":"Post-hoc fusion of saved predictions",
+    "computable_from_frozen_outputs":true,
+    "reason":"operates purely on stored prediction vectors",
+    "available_in":"this package (s07_metafusion_and_scope.py)"
+  },
+  {
+    "analysis":"Statistical validation (Wilcoxon, Cohen's d, CIs, Holm, bootstrap)",
+    "computable_from_frozen_outputs":true,
+    "reason":"computed from stored per-pair predictions",
+    "available_in":"this package (s02_statistical_validation.py)"
+  },
+  {
+    "analysis":"Uncertainty: split conformal on all stations and horizons",
+    "computable_from_frozen_outputs":true,
+    "reason":"split conformal is a post-hoc wrapper on stored predictions",
+    "available_in":"this package (s03_uncertainty.py)"
+  },
+  {
+    "analysis":"Robustness, error structure, conditional skill",
+    "computable_from_frozen_outputs":true,
+    "reason":"computed from stored residuals",
+    "available_in":"this package (s04_robustness.py)"
+  },
+  {
+    "analysis":"Result consistency verification",
+    "computable_from_frozen_outputs":true,
+    "reason":"recomputes reported metrics from stored predictions",
+    "available_in":"this package (s01_consistency_verification.py)"
+  }
+]

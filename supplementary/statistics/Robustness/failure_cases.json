@@ -1,0 +1,236 @@
+[
+  {
+    "station":1,
+    "horizon":"H8",
+    "fame_skill":-0.133393,
+    "fame_r2":0.914068,
+    "uxgb_r2":0.835486,
+    "fame_rmse_W":100.234789,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":1,
+    "horizon":"H16",
+    "fame_skill":-0.378164,
+    "fame_r2":0.895516,
+    "uxgb_r2":0.743959,
+    "fame_rmse_W":110.537014,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":1,
+    "horizon":"H32",
+    "fame_skill":-0.163928,
+    "fame_r2":0.911953,
+    "uxgb_r2":0.595756,
+    "fame_rmse_W":101.484817,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":1,
+    "horizon":"H96",
+    "fame_skill":-0.365583,
+    "fame_r2":0.896708,
+    "uxgb_r2":0.174569,
+    "fame_rmse_W":109.823807,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":2,
+    "horizon":"H1",
+    "fame_skill":0.310821,
+    "fame_r2":0.955814,
+    "uxgb_r2":0.957738,
+    "fame_rmse_W":46.238245,
+    "issues":"R2 below unified XGBoost"
+  },
+  {
+    "station":2,
+    "horizon":"H16",
+    "fame_skill":-0.050519,
+    "fame_r2":0.932615,
+    "uxgb_r2":0.819098,
+    "fame_rmse_W":57.092737,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":2,
+    "horizon":"H32",
+    "fame_skill":-0.082082,
+    "fame_r2":0.930535,
+    "uxgb_r2":0.763519,
+    "fame_rmse_W":57.955328,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":2,
+    "horizon":"H96",
+    "fame_skill":-0.10548,
+    "fame_r2":0.929025,
+    "uxgb_r2":0.411678,
+    "fame_rmse_W":58.602443,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":4,
+    "horizon":"H1",
+    "fame_skill":0.199588,
+    "fame_r2":0.953262,
+    "uxgb_r2":0.953995,
+    "fame_rmse_W":53.230818,
+    "issues":"R2 below unified XGBoost"
+  },
+  {
+    "station":4,
+    "horizon":"H8",
+    "fame_skill":-0.046552,
+    "fame_r2":0.938895,
+    "uxgb_r2":0.789043,
+    "fame_rmse_W":60.869327,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":4,
+    "horizon":"H16",
+    "fame_skill":-0.13575,
+    "fame_r2":0.933697,
+    "uxgb_r2":0.587829,
+    "fame_rmse_W":63.411731,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":4,
+    "horizon":"H32",
+    "fame_skill":-0.183202,
+    "fame_r2":0.930975,
+    "uxgb_r2":0.246888,
+    "fame_rmse_W":64.718381,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":4,
+    "horizon":"H96",
+    "fame_skill":-0.186,
+    "fame_r2":0.93114,
+    "uxgb_r2":-0.103274,
+    "fame_rmse_W":64.59318,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":5,
+    "horizon":"H8",
+    "fame_skill":-0.025571,
+    "fame_r2":0.883951,
+    "uxgb_r2":0.698941,
+    "fame_rmse_W":101.83247,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":5,
+    "horizon":"H16",
+    "fame_skill":-0.102281,
+    "fame_r2":0.875165,
+    "uxgb_r2":0.416979,
+    "fame_rmse_W":105.582052,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":5,
+    "horizon":"H32",
+    "fame_skill":-0.2103,
+    "fame_r2":0.862677,
+    "uxgb_r2":0.343239,
+    "fame_rmse_W":110.655611,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":5,
+    "horizon":"H96",
+    "fame_skill":-0.229409,
+    "fame_r2":0.861968,
+    "uxgb_r2":-0.013271,
+    "fame_rmse_W":110.711876,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":6,
+    "horizon":"H16",
+    "fame_skill":-0.03926,
+    "fame_r2":0.896514,
+    "uxgb_r2":0.615338,
+    "fame_rmse_W":117.279613,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":6,
+    "horizon":"H32",
+    "fame_skill":-0.054063,
+    "fame_r2":0.895102,
+    "uxgb_r2":0.505388,
+    "fame_rmse_W":118.09864,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":6,
+    "horizon":"H96",
+    "fame_skill":-0.070167,
+    "fame_r2":0.893606,
+    "uxgb_r2":0.246114,
+    "fame_rmse_W":119.005336,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":7,
+    "horizon":"H1",
+    "fame_skill":0.161936,
+    "fame_r2":0.8206,
+    "uxgb_r2":0.821183,
+    "fame_rmse_W":111.042548,
+    "issues":"R2 below unified XGBoost"
+  },
+  {
+    "station":8,
+    "horizon":"H1",
+    "fame_skill":0.431496,
+    "fame_r2":0.973998,
+    "uxgb_r2":0.97664,
+    "fame_rmse_W":38.150288,
+    "issues":"R2 below unified XGBoost"
+  },
+  {
+    "station":8,
+    "horizon":"H8",
+    "fame_skill":-0.009434,
+    "fame_r2":0.953818,
+    "uxgb_r2":0.900956,
+    "fame_rmse_W":50.837192,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":8,
+    "horizon":"H16",
+    "fame_skill":-0.08181,
+    "fame_r2":0.950507,
+    "uxgb_r2":0.750013,
+    "fame_rmse_W":52.615125,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":8,
+    "horizon":"H32",
+    "fame_skill":-0.115812,
+    "fame_r2":0.949047,
+    "uxgb_r2":0.531804,
+    "fame_rmse_W":53.38423,
+    "issues":"skill<0 (worse than persistence)"
+  },
+  {
+    "station":8,
+    "horizon":"H96",
+    "fame_skill":-0.162823,
+    "fame_r2":0.94702,
+    "uxgb_r2":0.18659,
+    "fame_rmse_W":54.472937,
+    "issues":"skill<0 (worse than persistence)"
+  }
+]

@@ -1,0 +1,13 @@
+horizon,model,reported_mean_r2,recomputed_mean_r2,abs_diff,agrees
+H1,FAME,0.9267,0.926687,1.3e-05,True
+H1,Unified_XGB,0.9263,0.926259,4.1e-05,True
+H4,FAME,0.9154,0.91546,6e-05,True
+H4,Unified_XGB,0.8479,0.847864,3.6e-05,True
+H8,FAME,0.9059,0.905899,1e-06,True
+H8,Unified_XGB,0.7754,0.775391,9e-06,True
+H16,FAME,0.8975,0.897539,3.9e-05,True
+H16,Unified_XGB,0.633,0.632986,1.4e-05,True
+H32,FAME,0.8968,0.896835,3.5e-05,True
+H32,Unified_XGB,0.4744,0.474438,3.8e-05,True
+H96,FAME,0.8928,0.892812,1.2e-05,True
+H96,Unified_XGB,0.1561,0.156083,1.7e-05,True

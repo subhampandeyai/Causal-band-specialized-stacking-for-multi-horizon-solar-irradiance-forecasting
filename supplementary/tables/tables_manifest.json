@@ -1,0 +1,177 @@
+[
+  {
+    "table":"S1_consistency_summary",
+    "source":"Implementation_Audit\/consistency_summary.csv",
+    "status":"OK",
+    "n_rows":6,
+    "caption":"Reported vs recomputed metrics from the manuscript's own predictions"
+  },
+  {
+    "table":"S2_consistency_perpair",
+    "source":"Implementation_Audit\/consistency_perpair.csv",
+    "status":"OK",
+    "n_rows":42,
+    "caption":"Per-pair consistency verification (all 42 station-horizon pairs)"
+  },
+  {
+    "table":"S3_consistency_aggregate",
+    "source":"Implementation_Audit\/consistency_aggregate.csv",
+    "status":"OK",
+    "n_rows":12,
+    "caption":"Per-horizon aggregate consistency against the reported six-model table"
+  },
+  {
+    "table":"S4_implementation_audit",
+    "source":"Implementation_Audit\/implementation_audit.csv",
+    "status":"OK",
+    "n_rows":8,
+    "caption":"Implementation audit: executed correctness checks on the frozen implementation"
+  },
+  {
+    "table":"S5_baseline_fairness",
+    "source":"Baseline_Audit\/baseline_fairness_audit.csv",
+    "status":"OK",
+    "n_rows":7,
+    "caption":"Baseline fairness audit (documented; baselines not rerun)"
+  },
+  {
+    "table":"S6_paired_tests",
+    "source":"Statistics\/paired_tests.csv",
+    "status":"OK",
+    "n_rows":49,
+    "caption":"Wilcoxon signed-rank, Cohen's d_z and 95% CIs, per horizon and aggregated"
+  },
+  {
+    "table":"S7_holm_bonferroni",
+    "source":"Statistics\/holm_bonferroni.csv",
+    "status":"OK",
+    "n_rows":42,
+    "caption":"Holm-Bonferroni correction across the per-horizon families"
+  },
+  {
+    "table":"S8_bootstrap_ci",
+    "source":"Statistics\/bootstrap_ci_skill.csv",
+    "status":"OK",
+    "n_rows":21,
+    "caption":"Bootstrap 95% confidence intervals on the skill score (10,000 resamples)"
+  },
+  {
+    "table":"S9_win_loss",
+    "source":"Statistics\/win_loss_record.csv",
+    "status":"OK",
+    "n_rows":14,
+    "caption":"Win\/loss record against each baseline"
+  },
+  {
+    "table":"S10_conformal_summary",
+    "source":"Uncertainty\/conformal_summary_by_model.csv",
+    "status":"OK",
+    "n_rows":6,
+    "caption":"Split-conformal calibration and efficiency, all stations and horizons"
+  },
+  {
+    "table":"S11_conformal_by_horizon",
+    "source":"Uncertainty\/conformal_by_horizon.csv",
+    "status":"OK",
+    "n_rows":36,
+    "caption":"Conformal coverage and interval width by horizon"
+  },
+  {
+    "table":"S12_conformal_by_station",
+    "source":"Uncertainty\/conformal_by_station.csv",
+    "status":"OK",
+    "n_rows":42,
+    "caption":"Conformal coverage and interval width by station"
+  },
+  {
+    "table":"S13_conformal_crosscheck",
+    "source":"Uncertainty\/manuscript_station5_crosscheck.csv",
+    "status":"OK",
+    "n_rows":12,
+    "caption":"Cross-check of the manuscript's Station-5 conformal table"
+  },
+  {
+    "table":"S14_station_robustness",
+    "source":"Robustness\/station_robustness.csv",
+    "status":"OK",
+    "n_rows":7,
+    "caption":"Robustness across the seven stations"
+  },
+  {
+    "table":"S15_horizon_robustness",
+    "source":"Robustness\/horizon_robustness.csv",
+    "status":"OK",
+    "n_rows":6,
+    "caption":"Robustness across the six horizons"
+  },
+  {
+    "table":"S16_degradation",
+    "source":"Robustness\/degradation_trends.csv",
+    "status":"OK",
+    "n_rows":7,
+    "caption":"Skill degradation with lead time, per station"
+  },
+  {
+    "table":"S17_failure_cases",
+    "source":"Robustness\/failure_cases.csv",
+    "status":"OK",
+    "n_rows":26,
+    "caption":"Every station-horizon pair where the proposed model is not superior"
+  },
+  {
+    "table":"S18_error_structure",
+    "source":"Robustness\/error_structure.csv",
+    "status":"OK",
+    "n_rows":126,
+    "caption":"Residual bias, shape and autocorrelation by model"
+  },
+  {
+    "table":"S19_conditional_skill",
+    "source":"Robustness\/conditional_skill_summary.csv",
+    "status":"OK",
+    "n_rows":3,
+    "caption":"Performance stratified by irradiance regime"
+  },
+  {
+    "table":"S20_per_pair_metrics",
+    "source":"Raw_Data\/per_pair_metrics.csv",
+    "status":"OK",
+    "n_rows":42,
+    "caption":"All metrics for all models on all 42 station-horizon pairs"
+  },
+  {
+    "table":"S21_posthoc_fusion",
+    "source":"Ablation\/posthoc_fusion_summary.csv",
+    "status":"OK",
+    "n_rows":4,
+    "caption":"Post-hoc fusion of saved predictions (oracle rows are upper bounds, not competitors)"
+  },
+  {
+    "table":"S22_fusion_headtohead",
+    "source":"Ablation\/posthoc_fusion_fair_headtohead.csv",
+    "status":"OK",
+    "n_rows":1,
+    "caption":"Fair head-to-head among variants with no test-block access"
+  },
+  {
+    "table":"S23_proposed_vs_baselines",
+    "source":"Ablation\/proposed_vs_baselines_eval_half.csv",
+    "status":"OK",
+    "n_rows":42,
+    "caption":"Manuscript model vs each baseline on the identical evaluation half"
+  },
+  {
+    "table":"S24_scope_declaration",
+    "source":"Sensitivity\/scope_declaration.csv",
+    "status":"OK",
+    "n_rows":12,
+    "caption":"Which analyses are computable from frozen outputs, and which require retraining"
+  },
+  {
+    "table":"S25_computational_facts",
+    "source":"Computational_Cost\/measured_computational_facts.csv",
+    "status":"OK",
+    "n_rows":9,
+    "caption":"Measured computational facts from the frozen artifacts"
+  }
+]

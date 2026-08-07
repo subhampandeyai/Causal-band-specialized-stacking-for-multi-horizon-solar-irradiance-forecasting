@@ -1,0 +1,17 @@
+name: causal-band-stacking
+channels: [conda-forge, defaults]
+dependencies:
+  - python=3.9
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - pyyaml
+  - openpyxl
+  - pip
+  - pip:
+      - PyWavelets
+      - xgboost
+      - lightgbm
+      - tensorflow

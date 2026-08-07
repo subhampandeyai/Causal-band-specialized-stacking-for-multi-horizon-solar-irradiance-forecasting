@@ -1,0 +1,169 @@
+station,horizon,variant,comparison_class,r2,rmse_W,mae_W,skill,convex_weight_uxgb,n_eval
+1,H1,"proposed (manuscript, no test access)",fair,0.951412,69.8782,38.534419,0.379151,,2611
+1,H1,"equal_average(uxgb,pers)",fair,0.945335,74.119696,45.930939,0.301495,,2611
+1,H1,[ORACLE] best_single per pair,oracle,0.950109,70.808952,38.311445,0.362502,,2611
+1,H1,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.95067,70.41024,38.270244,0.369661,0.86,2611
+1,H4,"proposed (manuscript, no test access)",fair,0.932304,82.48216,55.466189,0.134987,,2611
+1,H4,"equal_average(uxgb,pers)",fair,0.931873,82.744561,55.652992,0.129475,,2611
+1,H4,[ORACLE] best_single per pair,oracle,0.92174,88.684714,63.913826,0.0,,2611
+1,H4,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.934495,81.136364,55.847192,0.162984,0.39,2611
+1,H8,"proposed (manuscript, no test access)",fair,0.902019,99.231634,76.727315,-0.251995,,2611
+1,H8,"equal_average(uxgb,pers)",fair,0.911349,94.388984,67.977484,-0.132779,,2611
+1,H8,[ORACLE] best_single per pair,oracle,0.92174,88.684714,63.913826,0.0,,2611
+1,H8,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.927749,85.211666,62.199142,0.07679,0.23,2611
+1,H16,"proposed (manuscript, no test access)",fair,0.87017,114.221221,94.217921,-0.658756,,2610
+1,H16,"equal_average(uxgb,pers)",fair,0.875371,111.91008,86.442606,-0.592309,,2610
+1,H16,[ORACLE] best_single per pair,oracle,0.92173,88.686097,63.905747,0.0,,2610
+1,H16,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.920836,89.191429,66.642343,-0.011428,0.14,2610
+1,H32,"proposed (manuscript, no test access)",fair,0.898621,100.938951,79.581777,-0.295434,,2609
+1,H32,"equal_average(uxgb,pers)",fair,0.825775,132.324584,105.066754,-1.226275,,2609
+1,H32,[ORACLE] best_single per pair,oracle,0.921742,88.685198,63.895362,0.0,,2609
+1,H32,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.919572,89.906311,66.752772,-0.027728,0.09,2609
+1,H96,"proposed (manuscript, no test access)",fair,0.890487,105.000924,84.302076,-0.400974,,2604
+1,H96,"equal_average(uxgb,pers)",fair,0.710831,170.622687,142.981289,-2.699282,,2604
+1,H96,[ORACLE] best_single per pair,oracle,0.921831,88.71112,63.87788,0.0,,2604
+1,H96,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.921177,89.081449,64.863051,-0.008367,0.02,2604
+2,H1,"proposed (manuscript, no test access)",fair,0.930387,49.259812,28.205036,0.280038,,2528
+2,H1,"equal_average(uxgb,pers)",fair,0.92557,50.935545,30.32564,0.230222,,2528
+2,H1,[ORACLE] best_single per pair,oracle,0.933069,48.301719,26.551568,0.307772,,2528
+2,H1,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.932615,48.465021,26.823807,0.303084,0.88,2528
+2,H4,"proposed (manuscript, no test access)",fair,0.913785,54.819971,37.65572,0.108336,,2528
+2,H4,"equal_average(uxgb,pers)",fair,0.913565,54.889967,36.124315,0.106057,,2528
+2,H4,[ORACLE] best_single per pair,oracle,0.90331,58.054793,37.862773,0.0,,2528
+2,H4,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.917254,53.70583,35.447701,0.144211,0.38,2528
+2,H8,"proposed (manuscript, no test access)",fair,0.904546,57.682529,40.442119,0.012783,,2528
+2,H8,"equal_average(uxgb,pers)",fair,0.892288,61.274487,43.843932,-0.113995,,2528
+2,H8,[ORACLE] best_single per pair,oracle,0.90331,58.054793,37.862773,0.0,,2528
+2,H8,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.908028,56.620574,39.465975,0.048799,0.32,2528
+2,H16,"proposed (manuscript, no test access)",fair,0.89397,60.792233,44.429017,-0.096168,,2527
+2,H16,"equal_average(uxgb,pers)",fair,0.871952,66.806571,49.656533,-0.32379,,2527
+2,H16,[ORACLE] best_single per pair,oracle,0.903272,58.064358,37.868362,0.0,,2527
+2,H16,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.908192,56.568208,38.62858,0.05087,0.17,2527
+2,H32,"proposed (manuscript, no test access)",fair,0.892848,61.107762,44.165925,-0.107196,,2526
+2,H32,"equal_average(uxgb,pers)",fair,0.861043,69.58834,52.689894,-0.435836,,2526
+2,H32,[ORACLE] best_single per pair,oracle,0.903222,58.074314,37.874949,0.0,,2526
+2,H32,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.905331,57.438187,37.794483,0.021787,0.04,2526
+2,H96,"proposed (manuscript, no test access)",fair,0.90517,57.419438,39.39503,0.013897,,2521
+2,H96,"equal_average(uxgb,pers)",fair,0.771417,89.147055,71.914411,-1.376941,,2521
+2,H96,[ORACLE] best_single per pair,oracle,0.903833,57.822627,37.759512,0.0,,2521
+2,H96,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.903833,57.822627,37.759512,0.0,0.0,2521
+4,H1,"proposed (manuscript, no test access)",fair,0.970509,38.288526,22.362483,0.285209,,2425
+4,H1,"equal_average(uxgb,pers)",fair,0.968765,39.404565,24.116803,0.242932,,2425
+4,H1,[ORACLE] best_single per pair,oracle,0.970587,38.237504,21.729573,0.287112,,2425
+4,H1,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.970904,38.031423,21.605289,0.294776,0.86,2425
+4,H4,"proposed (manuscript, no test access)",fair,0.956244,46.643561,32.084998,-0.060647,,2424
+4,H4,"equal_average(uxgb,pers)",fair,0.949956,49.882361,33.576399,-0.213058,,2424
+4,H4,[ORACLE] best_single per pair,oracle,0.958746,45.290405,30.709942,0.0,,2424
+4,H4,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.959798,44.709146,30.400423,0.025503,0.22,2424
+4,H8,"proposed (manuscript, no test access)",fair,0.949663,50.028081,35.583197,-0.220156,,2424
+4,H8,"equal_average(uxgb,pers)",fair,0.918236,63.760477,45.009617,-0.981941,,2424
+4,H8,[ORACLE] best_single per pair,oracle,0.958746,45.290405,30.709942,0.0,,2424
+4,H8,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.956514,46.499312,32.585366,-0.054097,0.14,2424
+4,H16,"proposed (manuscript, no test access)",fair,0.943698,52.909726,39.647996,-0.364767,,2424
+4,H16,"equal_average(uxgb,pers)",fair,0.848043,86.922367,66.67228,-2.683415,,2424
+4,H16,[ORACLE] best_single per pair,oracle,0.958746,45.290405,30.709942,0.0,,2424
+4,H16,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.956137,46.700357,32.823967,-0.063232,0.06,2424
+4,H32,"proposed (manuscript, no test access)",fair,0.942156,53.647059,40.822082,-0.402651,,2422
+4,H32,"equal_average(uxgb,pers)",fair,0.757967,109.737609,89.169182,-4.869062,,2422
+4,H32,[ORACLE] best_single per pair,oracle,0.958761,45.297177,30.705533,0.0,,2422
+4,H32,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.957691,45.881372,31.835069,-0.02596,0.03,2422
+4,H96,"proposed (manuscript, no test access)",fair,0.947026,51.376563,37.065481,-0.287126,,2418
+4,H96,"equal_average(uxgb,pers)",fair,0.687242,124.835322,104.538351,-6.599168,,2418
+4,H96,[ORACLE] best_single per pair,oracle,0.958843,45.28501,30.672084,0.0,,2418
+4,H96,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.958809,45.303506,30.901852,-0.000817,0.01,2418
+5,H1,"proposed (manuscript, no test access)",fair,0.945806,67.237769,37.925115,0.195393,,2502
+5,H1,"equal_average(uxgb,pers)",fair,0.943087,68.903407,39.717041,0.155036,,2502
+5,H1,[ORACLE] best_single per pair,oracle,0.938217,71.791158,42.652668,0.082726,,2502
+5,H1,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.942359,69.342793,40.092491,0.144225,0.77,2502
+5,H4,"proposed (manuscript, no test access)",fair,0.930416,76.188628,48.27911,-0.033088,,2502
+5,H4,"equal_average(uxgb,pers)",fair,0.92587,78.638204,51.712798,-0.100586,,2502
+5,H4,[ORACLE] best_single per pair,oracle,0.932645,74.958608,44.096723,0.0,,2502
+5,H4,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.934598,73.863739,47.110863,0.028999,0.35,2502
+5,H8,"proposed (manuscript, no test access)",fair,0.914334,84.535462,59.704631,-0.271847,,2502
+5,H8,"equal_average(uxgb,pers)",fair,0.891455,95.156866,68.311406,-0.611526,,2502
+5,H8,[ORACLE] best_single per pair,oracle,0.932645,74.958608,44.096723,0.0,,2502
+5,H8,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.929883,76.480073,50.28491,-0.041007,0.23,2502
+5,H16,"proposed (manuscript, no test access)",fair,0.903397,89.748377,66.170337,-0.433123,,2501
+5,H16,"equal_average(uxgb,pers)",fair,0.807951,126.543161,96.730021,-1.8491,,2501
+5,H16,[ORACLE] best_single per pair,oracle,0.932593,74.969537,44.09876,0.0,,2501
+5,H16,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.928743,77.080831,51.503892,-0.057117,0.12,2501
+5,H32,"proposed (manuscript, no test access)",fair,0.886014,97.453521,71.660259,-0.689519,,2500
+5,H32,"equal_average(uxgb,pers)",fair,0.78615,133.483137,108.374144,-2.169719,,2500
+5,H32,[ORACLE] best_single per pair,oracle,0.932533,74.974926,44.0924,0.0,,2500
+5,H32,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.927989,77.458907,51.749197,-0.067359,0.11,2500
+5,H96,"proposed (manuscript, no test access)",fair,0.893174,94.32822,67.915804,-0.602299,,2495
+5,H96,"equal_average(uxgb,pers)",fair,0.673531,164.901673,135.38563,-3.896779,,2495
+5,H96,[ORACLE] best_single per pair,oracle,0.93333,74.519476,43.881764,0.0,,2495
+5,H96,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.929546,76.604932,49.757846,-0.056754,0.07,2495
+6,H1,"proposed (manuscript, no test access)",fair,0.960822,68.932592,35.431787,0.380748,,2559
+6,H1,"equal_average(uxgb,pers)",fair,0.954862,73.990365,42.465809,0.286542,,2559
+6,H1,[ORACLE] best_single per pair,oracle,0.959109,70.423462,36.506638,0.353672,,2559
+6,H1,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.959319,70.242343,35.842516,0.356993,0.86,2559
+6,H4,"proposed (manuscript, no test access)",fair,0.945063,81.627501,52.634548,0.131658,,2559
+6,H4,"equal_average(uxgb,pers)",fair,0.935031,88.767762,56.964744,-0.026901,,2559
+6,H4,[ORACLE] best_single per pair,oracle,0.936733,87.597352,59.64255,0.0,,2559
+6,H4,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.943126,83.053738,55.253389,0.101048,0.25,2559
+6,H8,"proposed (manuscript, no test access)",fair,0.935016,88.777687,62.509714,-0.027131,,2559
+6,H8,"equal_average(uxgb,pers)",fair,0.912626,102.942388,71.279104,-0.381041,,2559
+6,H8,[ORACLE] best_single per pair,oracle,0.936733,87.597352,59.64255,0.0,,2559
+6,H8,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.939047,85.980124,59.188325,0.036583,0.18,2559
+6,H16,"proposed (manuscript, no test access)",fair,0.923209,96.484711,73.935888,-0.212757,,2558
+6,H16,"equal_average(uxgb,pers)",fair,0.879033,121.097969,90.73859,-0.910427,,2558
+6,H16,[ORACLE] best_single per pair,oracle,0.936681,87.613625,59.658243,0.0,,2558
+6,H16,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.936138,87.988221,63.385985,-0.008569,0.14,2558
+6,H32,"proposed (manuscript, no test access)",fair,0.922416,96.956993,73.441084,-0.224195,,2557
+6,H32,"equal_average(uxgb,pers)",fair,0.869034,125.972046,96.276475,-1.066525,,2557
+6,H32,[ORACLE] best_single per pair,oracle,0.936625,87.630212,59.675473,0.0,,2557
+6,H32,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.937222,87.216232,62.272048,0.009426,0.1,2557
+6,H96,"proposed (manuscript, no test access)",fair,0.926234,94.416017,70.383545,-0.158717,,2552
+6,H96,"equal_average(uxgb,pers)",fair,0.815694,149.241083,117.45114,-1.895094,,2552
+6,H96,[ORACLE] best_single per pair,oracle,0.936339,87.711603,59.759137,0.0,,2552
+6,H96,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.937023,87.238695,60.920954,0.010754,0.05,2552
+7,H1,"proposed (manuscript, no test access)",fair,0.888726,80.579766,45.897968,0.189521,,2409
+7,H1,"equal_average(uxgb,pers)",fair,0.88602,81.553818,47.720208,0.169808,,2409
+7,H1,[ORACLE] best_single per pair,oracle,0.890454,79.951576,45.637831,0.202108,,2409
+7,H1,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.891116,79.709884,44.877893,0.206925,0.86,2409
+7,H4,"proposed (manuscript, no test access)",fair,0.88104,83.316254,54.129574,0.133538,,2409
+7,H4,"equal_average(uxgb,pers)",fair,0.876157,85.009144,55.336367,0.097969,,2409
+7,H4,[ORACLE] best_single per pair,oracle,0.862706,89.506587,58.488467,0.0,,2409
+7,H4,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.882118,82.937771,54.065549,0.141392,0.29,2409
+7,H8,"proposed (manuscript, no test access)",fair,0.868529,87.587989,60.807406,0.042411,,2409
+7,H8,"equal_average(uxgb,pers)",fair,0.867186,88.03405,60.476459,0.032633,,2409
+7,H8,[ORACLE] best_single per pair,oracle,0.862706,89.506587,58.488467,0.0,,2409
+7,H8,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.881087,83.299678,55.632249,0.133883,0.26,2409
+7,H16,"proposed (manuscript, no test access)",fair,0.858799,90.784252,64.909227,-0.028752,,2408
+7,H16,"equal_average(uxgb,pers)",fair,0.835876,97.876267,68.389809,-0.195761,,2408
+7,H16,[ORACLE] best_single per pair,oracle,0.862745,89.506631,58.47563,0.0,,2408
+7,H16,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.873098,86.065002,58.265124,0.075424,0.22,2408
+7,H32,"proposed (manuscript, no test access)",fair,0.856749,91.429589,66.398676,-0.044578,,2407
+7,H32,"equal_average(uxgb,pers)",fair,0.765662,116.938785,91.208006,-0.708774,,2407
+7,H32,[ORACLE] best_single per pair,oracle,0.862862,89.457401,58.428909,0.0,,2407
+7,H32,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.861331,89.955347,63.815756,-0.011164,0.18,2407
+7,H96,"proposed (manuscript, no test access)",fair,0.861876,89.675588,62.837178,-0.002867,,2402
+7,H96,"equal_average(uxgb,pers)",fair,0.766032,116.712554,91.544654,-0.698752,,2402
+7,H96,[ORACLE] best_single per pair,oracle,0.86227,89.54731,58.520449,0.0,,2402
+7,H96,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.86816,87.611929,59.653134,0.042759,0.13,2402
+8,H1,"proposed (manuscript, no test access)",fair,0.97553,33.328112,24.076187,0.502983,,2479
+8,H1,"equal_average(uxgb,pers)",fair,0.968824,37.618148,27.902161,0.366795,,2479
+8,H1,[ORACLE] best_single per pair,oracle,0.974933,33.731966,23.773269,0.490865,,2479
+8,H1,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.974933,33.731966,23.773269,0.490865,1.0,2479
+8,H4,"proposed (manuscript, no test access)",fair,0.964203,40.310361,31.00003,0.272919,,2479
+8,H4,"equal_average(uxgb,pers)",fair,0.961861,41.607811,31.703139,0.225361,,2479
+8,H4,[ORACLE] best_single per pair,oracle,0.950765,47.274316,36.616132,0.0,,2479
+8,H4,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.961861,41.607811,31.703139,0.225361,0.5,2479
+8,H8,"proposed (manuscript, no test access)",fair,0.951472,46.931082,36.94106,0.014617,,2478
+8,H8,"equal_average(uxgb,pers)",fair,0.943123,50.807917,40.386353,-0.154906,,2478
+8,H8,[ORACLE] best_single per pair,oracle,0.950752,47.277882,36.615811,0.0,,2478
+8,H8,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.953674,45.853693,35.74698,0.05934,0.19,2478
+8,H16,"proposed (manuscript, no test access)",fair,0.943515,50.63235,40.157202,-0.146939,,2478
+8,H16,"equal_average(uxgb,pers)",fair,0.892499,69.85024,55.940583,-1.182829,,2478
+8,H16,[ORACLE] best_single per pair,oracle,0.950752,47.277882,36.615811,0.0,,2478
+8,H16,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.950705,47.30026,36.619729,-0.000947,0.03,2478
+8,H32,"proposed (manuscript, no test access)",fair,0.937883,53.089393,42.893366,-0.260661,,2477
+8,H32,"equal_average(uxgb,pers)",fair,0.846573,83.436324,66.079749,-2.113818,,2477
+8,H32,[ORACLE] best_single per pair,oracle,0.950727,47.283388,36.618179,0.0,,2477
+8,H32,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.950826,47.235606,36.64946,0.00202,0.01,2477
+8,H96,"proposed (manuscript, no test access)",fair,0.945042,49.936643,39.245062,-0.11424,,2472
+8,H96,"equal_average(uxgb,pers)",fair,0.75258,105.954758,86.090409,-4.01627,,2472
+8,H96,[ORACLE] best_single per pair,oracle,0.950677,47.307501,36.632981,0.0,,2472
+8,H96,"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",oracle,0.950677,47.307501,36.632981,0.0,0.0,2472

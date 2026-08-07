@@ -1,0 +1,6 @@
+line,code,site
+92,np.random.seed(SEED),numpy global seed
+151,"random_state=SEED, n_jobs=-1, tree_method=""hist"", verbosity=0)",sklearn/xgboost/lightgbm seed
+160,tf.random.set_seed(SEED),TensorFlow graph-level seed
+184,tf.random.set_seed(SEED),TensorFlow graph-level seed
+275,"subsample=0.8, colsample_bytree=0.8, random_state=SEED,",sklearn/xgboost/lightgbm seed

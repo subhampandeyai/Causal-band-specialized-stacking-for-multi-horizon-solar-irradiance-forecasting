@@ -1,0 +1,98 @@
+[
+  {
+    "source":"saved_whole_series",
+    "band":"cA3",
+    "manuscript_label":"trend",
+    "nominal_passband_hours":">4.0",
+    "measured_scale":"slow envelope, periods longer than 4 h",
+    "in_band_energy_frac":0.99423,
+    "evidence":"CONFIRMED: 99.4% of band power lies in slow envelope, periods longer than 4 h",
+    "label_is_accurate":"yes",
+    "raw_argmax_period_h":350.530199,
+    "raw_argmax_caveat":"argmax is contaminated by diurnal leakage and moves with Welch segment length; not used for the scale claim"
+  },
+  {
+    "source":"saved_whole_series",
+    "band":"cD3",
+    "manuscript_label":"daily",
+    "nominal_passband_hours":"2.0\u20134.0",
+    "measured_scale":"2-4 hours (NOT daily)",
+    "in_band_energy_frac":0.738928,
+    "evidence":"CONFIRMED: 73.9% of band power lies in 2-4 hours (NOT daily)",
+    "label_is_accurate":"no - the label says 'daily' but the band is a 2-4 hour band",
+    "raw_argmax_period_h":3.448781,
+    "raw_argmax_caveat":"argmax is contaminated by diurnal leakage and moves with Welch segment length; not used for the scale claim"
+  },
+  {
+    "source":"saved_whole_series",
+    "band":"cD2",
+    "manuscript_label":"hourly",
+    "nominal_passband_hours":"1.0\u20132.0",
+    "measured_scale":"1-2 hours",
+    "in_band_energy_frac":0.736418,
+    "evidence":"CONFIRMED: 73.6% of band power lies in 1-2 hours",
+    "label_is_accurate":"yes",
+    "raw_argmax_period_h":1.54615,
+    "raw_argmax_caveat":"argmax is contaminated by diurnal leakage and moves with Welch segment length; not used for the scale claim"
+  },
+  {
+    "source":"saved_whole_series",
+    "band":"cD1",
+    "manuscript_label":"noise",
+    "nominal_passband_hours":"0.5\u20131.0",
+    "measured_scale":"30-60 minutes",
+    "in_band_energy_frac":0.889225,
+    "evidence":"CONFIRMED: 88.9% of band power lies in 30-60 minutes",
+    "label_is_accurate":"yes",
+    "raw_argmax_period_h":0.672294,
+    "raw_argmax_caveat":"argmax is contaminated by diurnal leakage and moves with Welch segment length; not used for the scale claim"
+  },
+  {
+    "source":"causal_trailing_window",
+    "band":"cA3",
+    "manuscript_label":"trend",
+    "nominal_passband_hours":">4.0",
+    "measured_scale":"slow envelope, periods longer than 4 h",
+    "in_band_energy_frac":0.9729,
+    "evidence":"CONFIRMED: 97.3% of band power lies in slow envelope, periods longer than 4 h",
+    "label_is_accurate":"yes",
+    "raw_argmax_period_h":157.657961,
+    "raw_argmax_caveat":"argmax is contaminated by diurnal leakage and moves with Welch segment length; not used for the scale claim"
+  },
+  {
+    "source":"causal_trailing_window",
+    "band":"cD3",
+    "manuscript_label":"daily",
+    "nominal_passband_hours":"2.0\u20134.0",
+    "measured_scale":"2-4 hours (NOT daily)",
+    "in_band_energy_frac":0.579161,
+    "evidence":"PARTIAL: 57.9% of band power lies in the nominal range; the remainder is diurnal leakage from the trailing-window reconstruction",
+    "label_is_accurate":"no - the label says 'daily' but the band is a 2-4 hour band",
+    "raw_argmax_period_h":13.247705,
+    "raw_argmax_caveat":"argmax is contaminated by diurnal leakage and moves with Welch segment length; not used for the scale claim"
+  },
+  {
+    "source":"causal_trailing_window",
+    "band":"cD2",
+    "manuscript_label":"hourly",
+    "nominal_passband_hours":"1.0\u20132.0",
+    "measured_scale":"1-2 hours",
+    "in_band_energy_frac":0.424152,
+    "evidence":"PARTIAL: 42.4% of band power lies in the nominal range; the remainder is diurnal leakage from the trailing-window reconstruction",
+    "label_is_accurate":"yes",
+    "raw_argmax_period_h":11.794129,
+    "raw_argmax_caveat":"argmax is contaminated by diurnal leakage and moves with Welch segment length; not used for the scale claim"
+  },
+  {
+    "source":"causal_trailing_window",
+    "band":"cD1",
+    "manuscript_label":"noise",
+    "nominal_passband_hours":"0.5\u20131.0",
+    "measured_scale":"30-60 minutes",
+    "in_band_energy_frac":0.871681,
+    "evidence":"CONFIRMED: 87.2% of band power lies in 30-60 minutes",
+    "label_is_accurate":"yes",
+    "raw_argmax_period_h":0.706382,
+    "raw_argmax_caveat":"argmax is contaminated by diurnal leakage and moves with Welch segment length; not used for the scale claim"
+  }
+]

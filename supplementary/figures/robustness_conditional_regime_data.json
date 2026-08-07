@@ -1,0 +1,20 @@
+[
+  {
+    "regime":"low",
+    "fame_rmse_W":57.9258,
+    "unified_xgb_rmse_W":147.0867,
+    "persistence_rmse_W":49.6774
+  },
+  {
+    "regime":"medium",
+    "fame_rmse_W":91.5331,
+    "unified_xgb_rmse_W":144.6868,
+    "persistence_rmse_W":95.0482
+  },
+  {
+    "regime":"high",
+    "fame_rmse_W":95.5036,
+    "unified_xgb_rmse_W":171.0222,
+    "persistence_rmse_W":98.1291
+  }
+]

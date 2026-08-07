@@ -1,0 +1,38 @@
+[
+  {
+    "variant":"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",
+    "comparison_class":"oracle",
+    "n":42,
+    "mean_r2":0.929862,
+    "mean_rmse_W":67.329764,
+    "mean_mae_W":45.60582,
+    "mean_skill":0.074522
+  },
+  {
+    "variant":"[ORACLE] best_single per pair",
+    "comparison_class":"oracle",
+    "n":42,
+    "mean_r2":0.927378,
+    "mean_rmse_W":68.326173,
+    "mean_mae_W":45.036919,
+    "mean_skill":0.049685
+  },
+  {
+    "variant":"proposed (manuscript, no test access)",
+    "comparison_class":"fair",
+    "n":42,
+    "mean_r2":0.919388,
+    "mean_rmse_W":72.381362,
+    "mean_mae_W":51.427941,
+    "mean_skill":-0.079009
+  },
+  {
+    "variant":"equal_average(uxgb,pers)",
+    "comparison_class":"fair",
+    "n":42,
+    "mean_r2":0.86484,
+    "mean_rmse_W":91.388884,
+    "mean_mae_W":67.854148,
+    "mean_skill":-0.997198
+  }
+]

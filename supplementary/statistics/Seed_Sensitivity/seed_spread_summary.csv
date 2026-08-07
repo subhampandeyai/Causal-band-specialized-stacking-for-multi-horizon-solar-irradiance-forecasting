@@ -1,0 +1,5 @@
+model,n_seeds,mean_skill,max_abs_delta_skill,max_abs_delta_rmse_W,max_abs_delta_r2,max_abs_delta_prediction,deterministic_given_data,seed_param_in_frozen_code
+LightGBM,3,0.170101749814,0.010471296532,0.578257330323,0.001183971778,1.203862e-01,False,"yes - random_state, with subsample=0.8 and colsample_bytree=0.8"
+Unified XGBoost,3,0.155807467393,0.00228489171,0.125003734163,0.000258348839,1.161872e-01,False,"yes - random_state, with subsample=0.8 and colsample_bytree=0.8"
+Persistence,3,0.0,0.0,0.0,0.0,0.000000e+00,True,no - persistence is a deterministic shift
+Ridge (trend expert),3,0.141537935548,0.0,0.0,0.0,0.000000e+00,True,no - Ridge takes no random_state

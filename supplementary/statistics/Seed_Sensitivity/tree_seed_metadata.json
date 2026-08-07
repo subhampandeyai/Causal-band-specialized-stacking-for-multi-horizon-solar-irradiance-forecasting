@@ -1,0 +1,33 @@
+{
+  "seeds": [
+    42,
+    0,
+    2024
+  ],
+  "stations": [
+    1,
+    2,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "horizons": [
+    "H1",
+    "H4",
+    "H8",
+    "H16",
+    "H32",
+    "H96"
+  ],
+  "models_run": [
+    "LightGBM",
+    "Unified XGBoost"
+  ],
+  "lightgbm_available": true,
+  "lstm_or_attention_trained": false,
+  "n_rows": 252,
+  "n_failures": 0,
+  "elapsed_s": 501.3
+}

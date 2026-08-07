@@ -1,0 +1,146 @@
+[
+  {
+    "variant":"[ORACLE] best_single per pair",
+    "horizon":"H1",
+    "mean_skill":0.298108,
+    "mean_rmse_W":59.035191
+  },
+  {
+    "variant":"[ORACLE] best_single per pair",
+    "horizon":"H16",
+    "mean_skill":0.0,
+    "mean_rmse_W":70.201219
+  },
+  {
+    "variant":"[ORACLE] best_single per pair",
+    "horizon":"H32",
+    "mean_skill":0.0,
+    "mean_rmse_W":70.200374
+  },
+  {
+    "variant":"[ORACLE] best_single per pair",
+    "horizon":"H4",
+    "mean_skill":0.0,
+    "mean_rmse_W":70.195254
+  },
+  {
+    "variant":"[ORACLE] best_single per pair",
+    "horizon":"H8",
+    "mean_skill":0.0,
+    "mean_rmse_W":70.195763
+  },
+  {
+    "variant":"[ORACLE] best_single per pair",
+    "horizon":"H96",
+    "mean_skill":0.0,
+    "mean_rmse_W":70.129235
+  },
+  {
+    "variant":"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",
+    "horizon":"H1",
+    "mean_skill":0.309504,
+    "mean_rmse_W":58.561953
+  },
+  {
+    "variant":"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",
+    "horizon":"H16",
+    "mean_skill":-0.002143,
+    "mean_rmse_W":70.127758
+  },
+  {
+    "variant":"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",
+    "horizon":"H32",
+    "mean_skill":-0.01414,
+    "mean_rmse_W":70.727423
+  },
+  {
+    "variant":"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",
+    "horizon":"H4",
+    "mean_skill":0.1185,
+    "mean_rmse_W":65.8592
+  },
+  {
+    "variant":"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",
+    "horizon":"H8",
+    "mean_skill":0.037184,
+    "mean_rmse_W":68.563588
+  },
+  {
+    "variant":"[ORACLE] convex(uxgb,pers), weight fitted on test-cal half",
+    "horizon":"H96",
+    "mean_skill":-0.001775,
+    "mean_rmse_W":70.138663
+  },
+  {
+    "variant":"equal_average(uxgb,pers)",
+    "horizon":"H1",
+    "mean_skill":0.250404,
+    "mean_rmse_W":60.932221
+  },
+  {
+    "variant":"equal_average(uxgb,pers)",
+    "horizon":"H16",
+    "mean_skill":-1.105376,
+    "mean_rmse_W":97.286665
+  },
+  {
+    "variant":"equal_average(uxgb,pers)",
+    "horizon":"H32",
+    "mean_skill":-1.798573,
+    "mean_rmse_W":110.211546
+  },
+  {
+    "variant":"equal_average(uxgb,pers)",
+    "horizon":"H4",
+    "mean_skill":0.031188,
+    "mean_rmse_W":68.791401
+  },
+  {
+    "variant":"equal_average(uxgb,pers)",
+    "horizon":"H8",
+    "mean_skill":-0.334794,
+    "mean_rmse_W":79.480739
+  },
+  {
+    "variant":"equal_average(uxgb,pers)",
+    "horizon":"H96",
+    "mean_skill":-3.026041,
+    "mean_rmse_W":131.630733
+  },
+  {
+    "variant":"proposed (manuscript, no test access)",
+    "horizon":"H1",
+    "mean_skill":0.316149,
+    "mean_rmse_W":58.214968
+  },
+  {
+    "variant":"proposed (manuscript, no test access)",
+    "horizon":"H16",
+    "mean_skill":-0.277323,
+    "mean_rmse_W":79.367553
+  },
+  {
+    "variant":"proposed (manuscript, no test access)",
+    "horizon":"H32",
+    "mean_skill":-0.289176,
+    "mean_rmse_W":79.231895
+  },
+  {
+    "variant":"proposed (manuscript, no test access)",
+    "horizon":"H4",
+    "mean_skill":0.098243,
+    "mean_rmse_W":66.484062
+  },
+  {
+    "variant":"proposed (manuscript, no test access)",
+    "horizon":"H8",
+    "mean_skill":-0.100188,
+    "mean_rmse_W":73.539209
+  },
+  {
+    "variant":"proposed (manuscript, no test access)",
+    "horizon":"H96",
+    "mean_skill":-0.221761,
+    "mean_rmse_W":77.450485
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "regime":"high",
+    "n_pairs":42,
+    "fame_rmse_W":95.503634,
+    "uxgb_rmse_W":171.022242,
+    "fame_skill":0.042714
+  },
+  {
+    "regime":"low",
+    "n_pairs":42,
+    "fame_rmse_W":57.925803,
+    "uxgb_rmse_W":147.086665,
+    "fame_skill":-0.4703
+  },
+  {
+    "regime":"medium",
+    "n_pairs":42,
+    "fame_rmse_W":91.533061,
+    "uxgb_rmse_W":144.686771,
+    "fame_skill":0.051807
+  }
+]

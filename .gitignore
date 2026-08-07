@@ -1,0 +1,20 @@
+﻿# Datasets are not redistributed; see data/DATA.md
+data/raw/
+data/processed/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Runtime artefacts
+supplementary/logs/
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

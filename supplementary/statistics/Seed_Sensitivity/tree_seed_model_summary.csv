@@ -1,0 +1,3 @@
+model,n_horizons,n_pairs_per_horizon,n_seeds,MAX_per_pair_skill_std_across_all_horizons,horizon_of_that_max,MAX_per_pair_rmse_std_W,mean_skill_std_over_grid
+LightGBM,6,7,3,1.191150e-01,H96,3.010540e+00,0.0299419209
+Unified XGBoost,6,7,3,1.593741e-01,H96,2.058199e+00,0.0264981877

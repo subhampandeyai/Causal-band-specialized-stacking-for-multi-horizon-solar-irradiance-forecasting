@@ -1,0 +1,27 @@
+[
+  {
+    "line":92,
+    "code":"np.random.seed(SEED)",
+    "site":"numpy global seed"
+  },
+  {
+    "line":151,
+    "code":"random_state=SEED, n_jobs=-1, tree_method=\"hist\", verbosity=0)",
+    "site":"sklearn\/xgboost\/lightgbm seed"
+  },
+  {
+    "line":160,
+    "code":"tf.random.set_seed(SEED)",
+    "site":"TensorFlow graph-level seed"
+  },
+  {
+    "line":184,
+    "code":"tf.random.set_seed(SEED)",
+    "site":"TensorFlow graph-level seed"
+  },
+  {
+    "line":275,
+    "code":"subsample=0.8, colsample_bytree=0.8, random_state=SEED,",
+    "site":"sklearn\/xgboost\/lightgbm seed"
+  }
+]

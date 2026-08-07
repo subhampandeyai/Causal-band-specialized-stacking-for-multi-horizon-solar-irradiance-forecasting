@@ -1,0 +1,56 @@
+[
+  {
+    "quantity":"station-horizon pairs with saved predictions",
+    "value":42.0,
+    "unit":"pairs",
+    "source":"results\/predictions\/"
+  },
+  {
+    "quantity":"total stored test predictions",
+    "value":209993.0,
+    "unit":"samples",
+    "source":"results\/predictions\/"
+  },
+  {
+    "quantity":"models per pair",
+    "value":3.0,
+    "unit":"models",
+    "source":"y_true, fame, unified_xgb, persistence"
+  },
+  {
+    "quantity":"LSTM band expert training (exact architecture)",
+    "value":966.0429,
+    "unit":"s\/pair",
+    "source":"measured; runtime_probe.json"
+  },
+  {
+    "quantity":"XGBoost hourly expert training",
+    "value":4.9435,
+    "unit":"s\/pair",
+    "source":"measured; runtime_probe.json"
+  },
+  {
+    "quantity":"Ridge trend expert training",
+    "value":0.0093,
+    "unit":"s\/pair",
+    "source":"measured; runtime_probe.json"
+  },
+  {
+    "quantity":"causal decomposition",
+    "value":8.0848,
+    "unit":"s\/station",
+    "source":"measured; runtime_probe.json"
+  },
+  {
+    "quantity":"proposed model, one pair",
+    "value":970.9957,
+    "unit":"s",
+    "source":"measured; runtime_probe.json"
+  },
+  {
+    "quantity":"one 42-pair grid",
+    "value":11.3283,
+    "unit":"h",
+    "source":"measured; runtime_probe.json"
+  }
+]

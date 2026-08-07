@@ -1,0 +1,44 @@
+# Pinned dependencies for bit-exact reproducibility on Python 3.9.13
+# Generated from working environment via `pip freeze`
+
+# Core scientific
+numpy==2.0.2
+pandas==2.3.3
+scipy==1.13.1
+scikit-learn==1.6.1
+statsmodels==0.14.6
+
+# Wavelets and signal processing
+PyWavelets==1.6.0
+EMD-signal==1.9.0
+vmdpy==0.2
+
+# Machine learning
+xgboost==2.1.4
+lightgbm==4.6.0
+ngboost==0.5.10
+
+# Deep learning
+tensorflow==2.20.0
+keras==3.10.0
+torch==2.8.0
+
+# Data IO
+openpyxl==3.1.5
+PyYAML==6.0.3
+kagglehub==0.3.13
+
+# Plotting
+matplotlib==3.9.4
+seaborn==0.13.2
+
+# Survival/regression utilities
+lifelines==0.30.0
+
+# CLI / progress
+tqdm==4.67.3
+rich==14.3.3
+
+# General
+joblib==1.5.3
+requests==2.32.5

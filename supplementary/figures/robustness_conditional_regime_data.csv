@@ -1,0 +1,4 @@
+regime,fame_rmse_W,unified_xgb_rmse_W,persistence_rmse_W
+low,57.9258,147.0867,49.6774
+medium,91.5331,144.6868,95.0482
+high,95.5036,171.0222,98.1291

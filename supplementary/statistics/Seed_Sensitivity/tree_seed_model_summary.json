@@ -1,0 +1,22 @@
+[
+  {
+    "model":"LightGBM",
+    "n_horizons":6,
+    "n_pairs_per_horizon":7,
+    "n_seeds":3,
+    "MAX_per_pair_skill_std_across_all_horizons":0.119114996,
+    "horizon_of_that_max":"H96",
+    "MAX_per_pair_rmse_std_W":3.0105399754,
+    "mean_skill_std_over_grid":0.0299419209
+  },
+  {
+    "model":"Unified XGBoost",
+    "n_horizons":6,
+    "n_pairs_per_horizon":7,
+    "n_seeds":3,
+    "MAX_per_pair_skill_std_across_all_horizons":0.1593740563,
+    "horizon_of_that_max":"H96",
+    "MAX_per_pair_rmse_std_W":2.0581987983,
+    "mean_skill_std_over_grid":0.0264981877
+  }
+]
