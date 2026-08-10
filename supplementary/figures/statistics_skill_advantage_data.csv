@@ -1,7 +1,0 @@
-scope,metric,baseline,n,mean_proposed,mean_baseline,mean_diff,ci95_lo,ci95_hi,wilcoxon_W,p_value,cohens_dz,effect_size,proposed_better_in,note,significant_a05
-H1,skill,Unified XGBoost,7,2.681900e-01,0.270719,-0.002528,-0.035126,0.030069,12.0,8.125000e-01,-0.07173,negligible,3,,False
-H4,skill,Unified XGBoost,7,1.176960e-01,-0.563504,0.6812,0.39702,0.96538,0.0,1.562500e-02,2.21692,large,7,,True
-H8,skill,Unified XGBoost,7,-2.682000e-03,-1.453352,1.45067,0.911417,1.989922,0.0,1.562500e-02,2.487974,large,7,,True
-H16,skill,Unified XGBoost,7,-1.037370e-01,-3.296471,3.192735,1.664082,4.721387,0.0,1.562500e-02,1.931627,large,7,,True
-H32,skill,Unified XGBoost,7,-1.073350e-01,-5.577875,5.47054,2.164262,8.776817,0.0,1.562500e-02,1.530242,large,7,,True
-H96,skill,Unified XGBoost,7,-1.549170e-01,-10.03774,9.882823,4.828958,14.936688,0.0,1.562500e-02,1.808534,large,7,,True

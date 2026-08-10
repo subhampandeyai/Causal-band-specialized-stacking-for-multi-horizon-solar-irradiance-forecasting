@@ -1,9 +1,0 @@
-source,band,manuscript_label,nominal_passband_hours,nominal_short_h,nominal_long_h,n_stations,mean_in_band_energy_frac,std_in_band_energy_frac,mean_median_power_period_h,mean_energy_share,std_energy_share,mean_peak_period_h,std_peak_period_h,min_peak_period_h,max_peak_period_h,mean_centroid_period_h
-saved_whole_series,cA3,trend,>4.0,4.0,inf,3,0.99423,0.001271,1.302840e+01,0.932611,0.011736,3.505302e+02,5.832426e+02,1.296203e+01,1.024000e+03,7.121309e+01
-saved_whole_series,cD3,daily,2.0–4.0,2.0,4.0,3,0.738928,0.006181,2.963526e+00,0.024489,0.0045,3.448781e+00,2.981650e-01,3.261146e+00,3.792593e+00,3.017162e+00
-saved_whole_series,cD2,hourly,1.0–2.0,1.0,2.0,3,0.736418,0.002493,1.420224e+00,0.019405,0.003805,1.546150e+00,1.263670e-01,1.408528e+00,1.656958e+00,1.470143e+00
-saved_whole_series,cD1,noise,0.5–1.0,0.5,1.0,3,0.889225,0.011664,7.029260e-01,0.023495,0.009803,6.722940e-01,9.612000e-02,5.644980e-01,7.490860e-01,7.481530e-01
-causal_trailing_window,cA3,trend,>4.0,4.0,inf,7,0.9729,0.014961,1.286152e+01,0.969562,0.013636,1.576580e+02,3.820219e+02,1.204706e+01,1.024000e+03,7.036779e+01
-causal_trailing_window,cD3,daily,2.0–4.0,2.0,4.0,7,0.579161,0.136155,3.580793e+00,0.003719,0.001619,1.324770e+01,8.584550e-01,1.204706e+01,1.462857e+01,5.323755e+00
-causal_trailing_window,cD2,hourly,1.0–2.0,1.0,2.0,7,0.424152,0.063694,1.514068e+00,0.025026,0.011406,1.179413e+01,4.427112e+00,1.872029e+00,1.462857e+01,2.574726e+00
-causal_trailing_window,cD1,noise,0.5–1.0,0.5,1.0,7,0.871681,0.030531,6.954710e-01,0.001693,0.000839,7.063820e-01,8.613600e-02,5.644980e-01,8.018790e-01,7.639340e-01

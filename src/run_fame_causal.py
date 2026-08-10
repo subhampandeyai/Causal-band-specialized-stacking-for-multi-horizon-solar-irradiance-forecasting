@@ -46,7 +46,7 @@ OUTPUTS (all under outputs/reports/paper2_causal/):
                                      uXGB R2  -> feeds a proposed-vs-persistence economic table
 
 RUN (PowerShell, project root, ~30-45 min CPU; LSTM is the slow part):
-    <repository root>
+    E:\Research\Implementation\venv\Scripts\Activate.ps1
     python run_fame_causal.py            # resumable; Ctrl+C then re-run to continue
 
 PREREQ: data/processed/station_XX_prepared.csv (Stage-0 output you already have).
@@ -74,9 +74,9 @@ except Exception:
     HAVE_LGB = False
 
 # ----------------------------------------------------------------------
-ROOT     = Path(__file__).parent
+ROOT     = Path(__file__).resolve().parents[1]   # repository root, not src/
 PROC_DIR = ROOT / "data" / "processed"
-OUT_DIR  = ROOT / "outputs" / "reports" / "paper2_causal"
+OUT_DIR  = ROOT / "results"
 PRED_DIR = OUT_DIR / "predictions"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 PRED_DIR.mkdir(parents=True, exist_ok=True)
@@ -126,11 +126,104 @@ def build_features(df, sig, bands):
     return pd.DataFrame(f).values
 
 def make_xy(X, sig, h):
+    """Chronological 70/15/15 split. Also returns the absolute index t of every
+    surviving row so the skill references can be anchored at the forecast origin.
+    The X/y returns are unchanged, so no model sees a different input."""
     n = len(sig); y = np.full(n, np.nan); y[:-h] = sig[h:]
     v = ~np.isnan(y) & ~np.isnan(X).any(1)
+    idx = np.where(v)[0]
     X, y = X[v], y[v]
     a, b = int(len(X) * .70), int(len(X) * .85)
-    return X[:a], y[:a], X[a:b], y[a:b], X[b:], y[b:]
+    return (X[:a], y[:a], X[a:b], y[a:b], X[b:], y[b:],
+            idx[:a], idx[a:b], idx[b:])
+
+
+# ----------------------------------------------------------------------
+# SKILL REFERENCES
+# ----------------------------------------------------------------------
+# The persistence array used as the cD1 band expert is y[t-1] in TARGET space,
+# i.e. sig(t + h - 1). That is a legitimate band input but it is NOT a valid
+# skill denominator for h > 1, because it reads a value ahead of the forecast
+# origin. Skill is therefore scored against two references built here:
+#
+#   PERSIST   sig(t)        last observed value at the forecast origin.
+#                           Reported at H1 and H4 only: beyond ~2 h its RMSE
+#                           exceeds the target's own standard deviation, so it
+#                           stops discriminating between models.
+#   CLIM      mu(tod, doy)  improved climatology, primary metric at all horizons.
+#
+# Only the denominator changes. Model predictions, features, splits and the
+# station list are untouched, so R2 / RMSE / MAE are unaffected.
+SPD = 96                 # 15-minute steps per day
+FOURIER_ORDER = 2        # annual cycle + first harmonic
+CLIM_SMOOTH_W = 3        # daylight-only moving average, never circular
+
+
+def _design_matrix(doy, order=FOURIER_ORDER):
+    w = 2.0 * np.pi * np.asarray(doy, float) / 365.25
+    cols = [np.ones_like(w)]
+    for k in range(1, order + 1):
+        cols.append(np.cos(k * w)); cols.append(np.sin(k * w))
+    return np.column_stack(cols)
+
+
+def _smooth_daylight_only(values, populated):
+    """Moving average inside contiguous populated runs. Never reads across a
+    night gap and never wraps midnight into dawn."""
+    out = values.copy()
+    idx = np.where(populated)[0]
+    if idx.size == 0:
+        return out
+    runs, start = [], idx[0]
+    for a, b in zip(idx[:-1], idx[1:]):
+        if b != a + 1:
+            runs.append((start, a)); start = b
+    runs.append((start, idx[-1]))
+    half = CLIM_SMOOTH_W // 2
+    for lo, hi in runs:
+        seg = values[lo:hi + 1]
+        if len(seg) < CLIM_SMOOTH_W:
+            continue
+        pad = np.r_[np.repeat(seg[0], half), seg, np.repeat(seg[-1], half)]
+        out[lo:hi + 1] = np.convolve(pad, np.ones(CLIM_SMOOTH_W) / CLIM_SMOOTH_W,
+                                     mode="valid")
+    return out
+
+
+def fit_climatology(sig, tod, doy, train_idx):
+    """Per-time-of-day Fourier fit in day-of-year, TRAINING rows only.
+    Slots with too few samples keep NaN coefficients and are never indexed,
+    because every evaluated row is a daytime row."""
+    ncoef = 1 + 2 * FOURIER_ORDER
+    coef = np.full((SPD, ncoef), np.nan)
+    counts = np.zeros(SPD, dtype=int)
+    tr = np.zeros(len(sig), dtype=bool); tr[train_idx] = True
+    for s in range(SPD):
+        m = tr & (tod == s)
+        counts[s] = int(m.sum())
+        if counts[s] < ncoef + 2:
+            continue
+        coef[s], *_ = np.linalg.lstsq(_design_matrix(doy[m]), sig[m], rcond=None)
+    populated = counts > 0
+    base = np.zeros(SPD)
+    for s in np.where(np.isfinite(coef[:, 0]))[0]:
+        base[s] = coef[s, 0]
+    adj = np.where(populated, _smooth_daylight_only(base, populated) - base, 0.0)
+    return coef, populated, adj
+
+
+def climatology_at(coef, populated, adj, tod_t, doy_t, cap):
+    """Climatology forecast for the target times. Returns None if any target
+    lands on an unpopulated slot, so a NaN can never silently propagate."""
+    if not populated[tod_t].all() or not np.isfinite(coef[tod_t]).all():
+        return None
+    vals = np.einsum("ij,ij->i", _design_matrix(doy_t), coef[tod_t]) + adj[tod_t]
+    return np.clip(vals, 0.0, cap)
+
+
+def skill_score(y, p, ref):
+    sse = float(np.sum((y - ref) ** 2))
+    return float(1 - np.sum((y - p) ** 2) / sse) if sse > 0 else float("nan")
 
 def to_seq(X, y, L):
     xs, ys = [], []
@@ -230,6 +323,7 @@ def main():
         print("!! No Stage-0 output in data/processed/. Run stage0 first."); return
 
     six_rows, per_rows, meta_rows, econ_rows, conf_rows = [], [], [], [], []
+    skill_rows = []
     t0 = time.time()
 
     for s in STATIONS:
@@ -242,8 +336,15 @@ def main():
         bands = bands_causal(sig)
         X = build_features(df, sig, bands)
 
+        # calendar arrays for the climatology reference, from the real columns
+        tod_all = ((pd.to_numeric(df["HOUR"], errors="coerce").fillna(0).values
+                    * 4).astype(int) % SPD)
+        doy_all = pd.to_numeric(df["DOY"], errors="coerce").fillna(1).values.astype(float)
+        sig_cap = float(np.nanmax(sig))
+
         for h in HORIZONS:
-            Xtr, ytr, Xva, yva, Xte, yte = make_xy(X, sig, h)
+            (Xtr, ytr, Xva, yva, Xte, yte,
+             oidx_tr, oidx_va, oidx_te) = make_xy(X, sig, h)
             if len(yte) < 100:
                 print(f"   H{h}: too few test rows"); continue
             sc = StandardScaler()
@@ -291,6 +392,40 @@ def main():
             uxgb_r2, uxgb_rmse, uxgb_mae = metrics(yte, uxgb_te)
             pers_r2, _, _ = metrics(yte, pers_te)
             sig_y = float(np.std(yte))
+
+            # ---- skill references, computed inside the loop ----
+            # PERSIST: last observed value at the forecast origin, sig(t).
+            ref_persist = sig[oidx_te]
+            # CLIM: mu(tod, doy) fitted on training rows only, evaluated at the
+            # TARGET time t+h of each test row.
+            coef, populated, adj = fit_climatology(sig, tod_all, doy_all, oidx_tr)
+            tgt_idx = np.minimum(oidx_te + h, len(sig) - 1)
+            ref_clim = climatology_at(coef, populated, adj,
+                                      tod_all[tgt_idx], doy_all[tgt_idx], sig_cap)
+
+            persist_valid = float(np.sqrt(np.mean((yte - ref_persist) ** 2))) < sig_y
+            skill_rows.append(dict(
+                station=s, horizon=f"H{h}", n_test=len(yte),
+                sigma_y_W=round(sig_y * SCALE, 2),
+                persist_rmse_W=round(float(np.sqrt(np.mean((yte - ref_persist) ** 2))) * SCALE, 2),
+                clim_rmse_W=(round(float(np.sqrt(np.mean((yte - ref_clim) ** 2))) * SCALE, 2)
+                             if ref_clim is not None else np.nan),
+                persist_is_valid_reference=bool(persist_valid),
+                fame_skill_persist=(round(skill_score(yte, fame_te, ref_persist), 6)
+                                    if h in (1, 4) else np.nan),
+                uxgb_skill_persist=(round(skill_score(yte, uxgb_te, ref_persist), 6)
+                                    if h in (1, 4) else np.nan),
+                fame_skill_clim=(round(skill_score(yte, fame_te, ref_clim), 6)
+                                 if ref_clim is not None else np.nan),
+                uxgb_skill_clim=(round(skill_score(yte, uxgb_te, ref_clim), 6)
+                                 if ref_clim is not None else np.nan)))
+            if ref_clim is not None:
+                print(f"   H{h}: skill vs clim  FAME={skill_rows[-1]['fame_skill_clim']:+.4f}"
+                      f"  uXGB={skill_rows[-1]['uxgb_skill_clim']:+.4f}"
+                      f"   (clim RMSE {skill_rows[-1]['clim_rmse_W']:.1f} vs sigma_y "
+                      f"{sig_y*SCALE:.1f} W)")
+            else:
+                print(f"   H{h}: climatology unavailable (target hit an unpopulated slot)")
 
             row6 = dict(station=s, horizon=f"H{h}",
                         FAME=round(fame_r2, 4), Unified_XGB=round(uxgb_r2, 4))
@@ -344,6 +479,16 @@ def main():
     pd.DataFrame(meta_rows).to_csv(OUT_DIR / "fame_causal_metacoef.csv", index=False)
     pd.DataFrame(econ_rows).to_csv(OUT_DIR / "fame_causal_econ_inputs.csv", index=False)
     pd.DataFrame(conf_rows).to_csv(OUT_DIR / "fame_causal_conformal.csv", index=False)
+    SK = pd.DataFrame(skill_rows)
+    SK.to_csv(OUT_DIR / "fame_causal_skill.csv", index=False)
+    if not SK.empty:
+        agg = (SK.groupby("horizon")[["sigma_y_W", "persist_rmse_W", "clim_rmse_W",
+                                      "fame_skill_persist", "uxgb_skill_persist",
+                                      "fame_skill_clim", "uxgb_skill_clim"]]
+               .mean().reindex([f"H{h}" for h in HORIZONS]))
+        agg.round(6).to_csv(OUT_DIR / "fame_causal_skill_by_horizon.csv")
+        print("\nskill by horizon (mean over stations):")
+        print(agg.round(4).to_string())
 
     print(f"\n{'='*66}")
     print(f"DONE in {(time.time()-t0)/60:.1f} min. Wrote to {OUT_DIR}")

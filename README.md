@@ -20,26 +20,29 @@ samples and six horizons from 15 minutes to 24 hours.
 
 ```
 .
-├── src/                     forecasting pipeline
-│   ├── run_fame_causal.py       band-specialized stacking, all stations/horizons
-│   ├── causal_decomposition_patch.py   causal trailing-window wavelet transform
-│   ├── conformal_causal.py      split-conformal prediction intervals
-│   ├── pipeline/                Stage 0 data preparation
-│   └── utils/                   configuration, metrics, plotting, schema checks
+├── src/                     forecasting pipeline and experiments
+│   ├── run_fame_causal.py            band-specialized stacking, band experts,
+│   │                                 dual skill reference (persistence, climatology)
+│   ├── run_experiments_full.py       experiment grid: seeds, W sweep, ablations,
+│   │                                 baselines, runtime measurement
+│   ├── band_learner_fixed.py         band-to-learner comparison
+│   ├── causal_decomposition_patch.py causal trailing-window wavelet transform
+│   ├── conformal_causal.py           split-conformal prediction intervals
+│   ├── pipeline/                     Stage 0 data preparation
+│   └── utils/                        configuration, metrics, plotting, schema checks
 ├── configs/config.yaml      pipeline configuration
 ├── data/                    DATA.md; raw/ and processed/ are populated locally
-├── results/                 manuscript result tables and per-pair predictions
-├── supplementary/           supplementary analyses, tables and figures
-│   ├── analysis_code/           the eight analysis stages
-│   ├── tables/                  supplementary tables S1-S25 (CSV + JSON)
-│   ├── figures/                 supplementary figures (PNG + PDF + data CSV)
-│   └── statistics/              per-domain source tables
+├── results/                 written by the grid; ships empty
+├── supplementary/
+│   ├── analysis_code/       statistics, uncertainty, robustness, band spectra
+│   ├── tables/              written by the analyses; ships empty
+│   ├── figures/             written by the analyses; ships empty
+│   └── statistics/          written by the analyses; ships empty
 ├── scripts/                 the two entry points
 ├── requirements.txt         loose dependency list
-├── requirements-lock.txt    exact versions that produced the results
+├── requirements-lock.txt    exact versions used for the reported results
 ├── environment.yml          conda equivalent
-├── REPOSITORY_MAP.md        which script produces which table and figure
-└── LICENSE_INVENTORY.md     dependency licenses and redistribution check
+└── REPRODUCING_TABLES.md    which script produces which table and figure
 ```
 
 ## Installation
@@ -104,8 +107,8 @@ grid is on the order of 90 hours. **This repository does not claim broad
 seed-robustness**, and the measurement above is the basis for the limitation
 statement in the paper.
 
-The supporting numbers are in `supplementary/statistics/Seed_Sensitivity/` and
-`supplementary/seed_sensitivity_note.md`.
+The supporting numbers are written to `supplementary/statistics/Seed_Sensitivity/`
+by the seed-sensitivity stages.
 
 ## Dataset
 
@@ -124,8 +127,8 @@ file names, the expected layout and the Station 3 exclusion. Every path in the
 repository is relative to the repository root, so nothing needs configuring once
 the files are in place.
 
-The supplementary analyses do not require the dataset; they run from the
-prediction files already in `results/predictions/`.
+The supplementary analyses read the prediction files written by the experiment
+grid, so the dataset is needed for the grid step that produces them.
 
 ## Reproducing the manuscript
 
@@ -145,23 +148,58 @@ reduces this by about an order of magnitude.
 
 ## Reproducing the supplementary analyses
 
+**The experiment grid must be run first.** This repository ships code only: no
+prediction files, tables or figures are included. The supplementary stages read
+the per-pair predictions written by the grid, so on a fresh clone they have
+nothing to read until the grid has produced them.
+
 ```bash
+# 1. prepare the data (see Dataset below)
+python scripts/reproduce_manuscript.py --stage0
+
+# 2. run the grid; this writes results/predictions/
+python src/run_experiments_full.py --seeds 42 --w 16
+
+# 3. then the supplementary analyses
 python scripts/reproduce_supplementary.py
 ```
 
-Runs in about 20 seconds and needs no model training and no dataset: every
-input is a prediction file already in `results/predictions/`. Use `--list` to
-see the stages or `--only <stage>` to run one.
+Step 3 takes about a minute once step 2 has finished. Use `--list` to see the
+stages or `--only <stage>` to run one.
+
+The only exception is the band-spectral analysis, which recomputes the
+decomposition directly from `data/processed/` and therefore runs without the
+grid:
+
+```bash
+python supplementary/analysis_code/s08_band_spectral_analysis.py
+```
+
+## A note on runtimes
+
+Every runtime reported in the complexity table is measured during the grid run
+and written to `supplementary/statistics/Computational_Cost/runtime_probe.json`
+by `src/run_experiments_full.py`. Nothing is carried over from a previous
+measurement.
+
+Runtimes are hardware-dependent. The values describe the machine that produced
+them and will differ on other hardware; the LSTM band expert dominates the cost
+and benefits most from a CUDA GPU.
 
 ## Expected outputs
+
+Output directories ship empty (each holds a `.gitkeep`) and are populated by the
+commands above.
 
 | Command | Writes |
 |---|---|
 | `reproduce_manuscript.py --stage0` | `data/processed/station_NN_prepared.csv` (8 files) |
-| `reproduce_manuscript.py` | `results/fame_causal_*.csv`, `results/predictions/*.csv` |
-| `reproduce_supplementary.py` | `supplementary/tables/S1..S25.{csv,json}`, `supplementary/figures/*.{png,pdf}`, `supplementary/statistics/<domain>/*.csv`, `supplementary/Supplementary_Analysis.pdf` |
+| `src/run_experiments_full.py` | `results/experiments/results_units.csv`, `results/experiments/predictions/`, `results/predictions/`, `runtime_probe.json` |
+| `src/band_learner_fixed.py` | `results/band_learner/band_learner_fixed.csv` |
+| `reproduce_supplementary.py` | `supplementary/tables/S1..S25.{csv,json}`, `supplementary/figures/*.{png,pdf}`, `supplementary/statistics/<domain>/*.csv` |
 
-`REPOSITORY_MAP.md` maps each table and figure to the script that produces it.
+`REPRODUCING_TABLES.md` maps each table and figure to the script that produces
+it.
 
 ## Citation
 

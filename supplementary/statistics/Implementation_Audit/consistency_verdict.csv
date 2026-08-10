@@ -1,2 +1,0 @@
-check,n_pairs,n_pairs_fully_agreeing,verdict,note
-result consistency,42,42,ALL REPORTED METRICS REPRODUCE from the saved predictions,Recomputed directly from results/predictions/*.csv. No model was retrained and no reported value was modified.

@@ -28,8 +28,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import Ridge
 import xgboost as xgb
 
-ROOT=Path(__file__).parent; PROC=ROOT/"data"/"processed"
-OUT=ROOT/"outputs"/"reports"/"paper_tables"; OUT.mkdir(parents=True,exist_ok=True)
+ROOT=Path(__file__).resolve().parents[1]; PROC=ROOT/"data"/"processed"
+OUT=ROOT/"results"; OUT.mkdir(parents=True,exist_ok=True)
 FAMILY,LEVEL,WINDOW,SEED=("db4",3,512,42); np.random.seed(SEED)
 STATION, HORIZONS = 5, [1,4]          # the station/horizons the paper reports
 ALPHAS = [0.10, 0.05]                 # 90% and 95% nominal

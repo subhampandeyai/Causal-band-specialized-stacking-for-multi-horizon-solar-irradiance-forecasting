@@ -1,9 +1,0 @@
-[
-  {
-    "check":"result consistency",
-    "n_pairs":42,
-    "n_pairs_fully_agreeing":42,
-    "verdict":"ALL REPORTED METRICS REPRODUCE from the saved predictions",
-    "note":"Recomputed directly from results\/predictions\/*.csv. No model was retrained and no reported value was modified."
-  }
-]

@@ -1,5 +1,0 @@
-band,manuscript_label,freq_lo_cyc_per_sample,freq_hi_cyc_per_sample,period_short_h,period_long_h,nominal_passband_hours
-cA3,trend,0.000000e+00,6.250000e-02,4.0,inf,>4.0
-cD3,daily,6.250000e-02,1.250000e-01,2.0,4.0,2.0–4.0
-cD2,hourly,1.250000e-01,2.500000e-01,1.0,2.0,1.0–2.0
-cD1,noise,2.500000e-01,5.000000e-01,0.5,1.0,0.5–1.0
