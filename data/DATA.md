@@ -57,18 +57,46 @@ training partition alone.
 
 Station 3 is excluded from every aggregate statistic because its sentinel-value
 density exceeds 30 per cent, a threshold fixed before the analysis. Seven
-stations and 233,709 admitted daytime samples remain. Its file is still required
-by the preparation step, which reports the exclusion.
+stations and 233,709 admitted daytime samples remain.
 
-## Reproducing without the dataset
+Station 3 is still prepared rather than dropped: Stage 0 processes all eight
+files, flags Station 3 with `QC_EXCLUDED = True`, and writes its prepared CSV
+alongside the others. The exclusion is applied downstream — the experiment grid
+and the supplementary analyses run on the seven admitted stations
+(1, 2, 4, 5, 6, 7, 8). Place all eight files in `data/raw/`; the input check in
+`scripts/reproduce_manuscript.py` expects eight `.xlsx` files and reports the
+count it finds.
 
-The supplementary analyses do **not** need the raw dataset. They operate on the
-per-pair prediction files in `results/predictions/`, which are included here:
+## Running the supplementary analyses
+
+This repository ships **code only**. No prediction files, tables or figures are
+included, so the supplementary analyses have nothing to read on a fresh clone.
+The experiment grid must be run first: it writes `results/predictions/`, which
+is what the supplementary stages consume.
 
 ```bash
-python scripts/reproduce_supplementary.py
+python scripts/reproduce_manuscript.py --stage0      # writes data/processed/
+python src/run_experiments_full.py --seeds 42 --w 16 # writes results/predictions/
+python scripts/reproduce_supplementary.py            # then the analyses
 ```
 
-Two parts of the band-spectral analysis (`s08`) read the station series and are
-skipped with an explanatory message when the dataset is absent; its analytic
-passband table is computed regardless.
+The band-spectral analysis (`s08`) is the one stage that does **not** need the
+grid. It works directly from the station series in `data/processed/`, so it can
+be run as soon as Stage 0 has finished:
+
+```bash
+python supplementary/analysis_code/s08_band_spectral_analysis.py
+```
+
+Its three parts have different inputs:
+
+- **(A) analytic passbands** — needs no data at all, always computed.
+- **(C) causal trailing-window spectra** — reads
+  `data/processed/station_NN_prepared.csv`, written by Stage 0.
+- **(B) saved whole-series spectra** — reads
+  `data/processed/station_NN_decomposed.csv`, which Stage 0 does not write. This
+  part is skipped unless those files are present from a prior decomposition run.
+
+When neither `prepared` nor `decomposed` files are found, `s08` writes the
+analytic table and stops with an explanatory message naming the paths it looked
+for.

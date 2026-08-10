@@ -17,7 +17,9 @@ python scripts/reproduce_manuscript.py --stage0
 # Reference configuration: seed 42, W = 16, all stations and horizons
 python src/run_experiments_full.py --seeds 42 --w 16
 
-# Full seed study: 8 seeds (about 43 h on CPU)
+# Full seed study: 8 seeds x 3 window lengths, all stations and horizons
+# (tens of hours on CPU; the band x learner table is computed for the first
+#  seed of each cell only, so later seeds cost substantially less)
 python src/run_experiments_full.py
 
 # Window-length sensitivity

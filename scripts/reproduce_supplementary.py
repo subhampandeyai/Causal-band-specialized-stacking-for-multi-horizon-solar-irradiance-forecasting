@@ -2,17 +2,22 @@
 """
 Reproduce every supplementary table and figure.
 
-Runs the eight supplementary analysis stages in dependency order and writes all
-outputs under supplementary/. Every input is a file already inside this
-repository, so no model training and no external download is required.
+Runs the eight default supplementary analysis stages in dependency order and
+writes all outputs under supplementary/. Those stages read the prediction files
+written by the experiment grid and train nothing.
+
+Three further stages (s09, s10, s11) are not part of the default run: the two
+seed-sensitivity stages refit the tree learners and therefore need
+data/processed/. Run them individually with --only; --list shows both groups.
 
 Usage
 -----
     python scripts/reproduce_supplementary.py
     python scripts/reproduce_supplementary.py --only s03_uncertainty
+    python scripts/reproduce_supplementary.py --only s10_seed_sensitivity
     python scripts/reproduce_supplementary.py --list
 
-Runtime: about one minute in total.
+Runtime: about one minute for the default stages.
 """
 from __future__ import annotations
 import argparse
@@ -45,6 +50,20 @@ STAGES = [
      "Consolidate the supplementary tables and build the PDF"),
 ]
 
+# Stages that are NOT part of the default run. They refit the tree learners, so
+# they need data/processed/ and take substantially longer than the stages above.
+# Reachable with --only, and listed by --list.
+OPTIONAL_STAGES = [
+    ("s09_export_bundle",
+     "Export the requested-data and requested-figure manifests"),
+    ("s10_seed_sensitivity",
+     "Seed spread of the tree learners on one representative pair"),
+    ("s11_tree_seed_grid",
+     "Seed spread of the tree learners across the full 42-pair grid"),
+]
+
+ALL_STAGES = STAGES + OPTIONAL_STAGES
+
 
 def run_stage(module: str) -> tuple[bool, float]:
     start = time.time()
@@ -60,11 +79,15 @@ def main() -> int:
     args = parser.parse_args()
 
     if args.list:
+        print("default stages (run in this order):")
         for module, description in STAGES:
+            print(f"  {module:<40} {description}")
+        print("\noptional stages (--only; not part of the default run):")
+        for module, description in OPTIONAL_STAGES:
             print(f"  {module:<40} {description}")
         return 0
 
-    stages = [s for s in STAGES if s[0] == args.only] if args.only else STAGES
+    stages = [s for s in ALL_STAGES if s[0] == args.only] if args.only else STAGES
     if not stages:
         print(f"unknown stage: {args.only}", file=sys.stderr)
         return 1

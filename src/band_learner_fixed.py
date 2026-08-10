@@ -50,10 +50,12 @@ therefore reports both:
 The second is the quantity Eq. 11's assignment is about.
 
 Read-only with respect to the repository: run_fame_causal.py is imported, never
-modified. Output goes to outputs/reports/band_learner_fixed/.
+modified. Output goes to results/band_learner/band_learner_fixed.csv.
 
-Run:
-    python band_learner_fixed.py --stations 1 --seed 42
+Run (from the repository root). Note that --stations defaults to station 1
+alone, so the full grid must be requested explicitly:
+    python src/band_learner_fixed.py --stations 1,2,4,5,6,7,8    # full grid
+    python src/band_learner_fixed.py --stations 1 --seed 42      # single station
 """
 import os
 import sys

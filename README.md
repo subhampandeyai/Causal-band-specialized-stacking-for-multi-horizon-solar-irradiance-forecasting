@@ -31,7 +31,7 @@ samples and six horizons from 15 minutes to 24 hours.
 │   ├── pipeline/                     Stage 0 data preparation
 │   └── utils/                        configuration, metrics, plotting, schema checks
 ├── configs/config.yaml      pipeline configuration
-├── data/                    DATA.md; raw/ and processed/ are populated locally
+├── data/                    DATA.md; raw/ is populated locally, processed/ by Stage 0
 ├── results/                 written by the grid; ships empty
 ├── supplementary/
 │   ├── analysis_code/       statistics, uncertainty, robustness, band spectra
@@ -103,12 +103,20 @@ long-horizon station-horizon cell is not.
 
 Multi-seed validation of the recurrent and attention learners was not performed:
 the LSTM costs about 16 minutes per station-horizon pair on a CPU, so an 8-seed
-grid is on the order of 90 hours. **This repository does not claim broad
+grid runs into tens of hours. **This repository does not claim broad
 seed-robustness**, and the measurement above is the basis for the limitation
 statement in the paper.
 
 The supporting numbers are written to `supplementary/statistics/Seed_Sensitivity/`
-by the seed-sensitivity stages.
+by the two seed-sensitivity stages. These refit the tree learners, so unlike the
+other supplementary stages they need `data/processed/` and take longer than a
+minute. They are **not** part of the default `reproduce_supplementary.py` run and
+must be invoked explicitly:
+
+```bash
+python scripts/reproduce_supplementary.py --only s10_seed_sensitivity
+python scripts/reproduce_supplementary.py --only s11_tree_seed_grid
+```
 
 ## Dataset
 
@@ -169,11 +177,17 @@ stages or `--only <stage>` to run one.
 
 The only exception is the band-spectral analysis, which recomputes the
 decomposition directly from `data/processed/` and therefore runs without the
-grid:
+grid — Stage 0 is enough:
 
 ```bash
 python supplementary/analysis_code/s08_band_spectral_analysis.py
 ```
+
+Its analytic passband table needs no data at all; the causal trailing-window
+spectra read `station_NN_prepared.csv` from Stage 0; the saved whole-series
+spectra read `station_NN_decomposed.csv`, which Stage 0 does not write, so that
+part is skipped unless those files are present from a prior decomposition run.
+`data/DATA.md` describes the three parts and their inputs in full.
 
 ## A note on runtimes
 
@@ -195,7 +209,7 @@ commands above.
 |---|---|
 | `reproduce_manuscript.py --stage0` | `data/processed/station_NN_prepared.csv` (8 files) |
 | `src/run_experiments_full.py` | `results/experiments/results_units.csv`, `results/experiments/predictions/`, `results/predictions/`, `runtime_probe.json` |
-| `src/band_learner_fixed.py` | `results/band_learner/band_learner_fixed.csv` |
+| `src/band_learner_fixed.py --stations 1,2,4,5,6,7,8` | `results/band_learner/band_learner_fixed.csv` |
 | `reproduce_supplementary.py` | `supplementary/tables/S1..S25.{csv,json}`, `supplementary/figures/*.{png,pdf}`, `supplementary/statistics/<domain>/*.csv` |
 
 `REPRODUCING_TABLES.md` maps each table and figure to the script that produces

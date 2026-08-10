@@ -12,14 +12,29 @@ Usage in any stage script:
 """
 import os, sys, yaml, json, hashlib, time, platform
 from pathlib import Path
+from typing import Optional
 from datetime import datetime
 
-# ── Locate project root (directory containing config.yaml) ─────────
+# ── Locate project root (directory containing the config file) ─────
+# The config file ships at configs/config.yaml. A bare config.yaml at the
+# project root is also accepted, so older checkouts keep working.
+_CONFIG_RELPATHS = (Path("configs") / "config.yaml", Path("config.yaml"))
+
+
+def find_config(root: Path) -> Optional[Path]:
+    """Return the config file under `root`, or None if it is not there."""
+    for rel in _CONFIG_RELPATHS:
+        candidate = root / rel
+        if candidate.exists():
+            return candidate
+    return None
+
+
 def _find_project_root() -> Path:
-    """Walk upward from this file to find config.yaml."""
+    """Walk upward from this file to find the directory holding the config."""
     current = Path(__file__).resolve().parent.parent
     for _ in range(5):
-        if (current / "config.yaml").exists():
+        if find_config(current) is not None:
             return current
         current = current.parent
     # Fallback: use environment variable
@@ -27,18 +42,20 @@ def _find_project_root() -> Path:
     if env_root and Path(env_root).exists():
         return Path(env_root)
     raise FileNotFoundError(
-        "Cannot find config.yaml. Set FAME_PROJECT_ROOT env variable "
-        "or run from the project directory."
+        "Cannot find configs/config.yaml. Set the FAME_PROJECT_ROOT env "
+        "variable or run from the project directory."
     )
 
 PROJECT_ROOT = _find_project_root()
 
 # ── Load config ────────────────────────────────────────────────────
 def load_config(config_path: Path = None) -> dict:
-    """Load config.yaml and return as dict."""
-    path = config_path or (PROJECT_ROOT / "config.yaml")
-    if not path.exists():
-        raise FileNotFoundError(f"Config not found: {path}")
+    """Load the config file and return it as a dict."""
+    path = config_path or find_config(PROJECT_ROOT)
+    if path is None or not path.exists():
+        raise FileNotFoundError(
+            f"Config not found under {PROJECT_ROOT}; expected one of: "
+            + ", ".join(str(r) for r in _CONFIG_RELPATHS))
     with open(path, 'r', encoding='utf-8') as f:
         return yaml.safe_load(f)
 
@@ -104,7 +121,7 @@ class RunManifest:
             "seed": cfg["seeds"]["global"],
             "python_version": platform.python_version(),
             "platform": platform.platform(),
-            "config_hash": file_hash(PROJECT_ROOT / "config.yaml"),
+            "config_hash": file_hash(find_config(PROJECT_ROOT)),
             "input_files": {},
             "output_files": {},
             "metrics": {},

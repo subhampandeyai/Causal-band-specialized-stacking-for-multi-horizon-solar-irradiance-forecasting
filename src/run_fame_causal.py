@@ -35,7 +35,7 @@ only (trailing window), taking the last reconstructed sample. No sample at t eve
 sees signal[t+1:]. Every other feature is backward-only. Chronological 70/15/15
 split, no shuffle. Meta-learner trained on validation predictions only.
 
-OUTPUTS (all under outputs/reports/paper2_causal/):
+OUTPUTS (all under results/):
   1. fame_causal_sixmodel.csv        per-horizon mean R2, all 6 models + persistence
   2. fame_causal_perstation.csv      every (station,horizon): R2/RMSE/MAE for FAME + uXGB
   3. fame_causal_metacoef.csv        the 4 per-band meta-coefficients per (station,horizon)
@@ -45,9 +45,8 @@ OUTPUTS (all under outputs/reports/paper2_causal/):
   6. fame_causal_econ_inputs.csv     per (station,horizon): sigma_y, persist R2, FAME R2,
                                      uXGB R2  -> feeds a proposed-vs-persistence economic table
 
-RUN (PowerShell, project root, ~30-45 min CPU; LSTM is the slow part):
-    E:\Research\Implementation\venv\Scripts\Activate.ps1
-    python run_fame_causal.py            # resumable; Ctrl+C then re-run to continue
+RUN (from the repository root, ~30-45 min CPU; LSTM is the slow part):
+    python src/run_fame_causal.py        # resumable; Ctrl+C then re-run to continue
 
 PREREQ: data/processed/station_XX_prepared.csv (Stage-0 output you already have).
         IRRADIATION column is in kW/m^2; the script converts errors to W/m^2 (x1000).
