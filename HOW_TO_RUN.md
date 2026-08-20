@@ -6,9 +6,9 @@ Follow the steps in order. Each step is one or more commands you type into a
 terminal and press Enter. Wait for each command to finish before starting the
 next.
 
-**You need:** Python 3.9, internet access for the first two steps, and about
-2 GB of free disk space (the dataset is ~1 GB; the results are ~0.3 GB). A CUDA GPU is strongly recommended — Step 6 is the
-long one and a GPU cuts it by roughly a factor of four.
+**You need:** Python 3.9 and internet access for the first two steps. A CUDA
+GPU is strongly recommended: Step 6 is the long one and a GPU cuts it by
+roughly a factor of four.
 
 This repository contains **code only**. No results are included; every table and
 figure is produced by the commands below.
@@ -214,7 +214,6 @@ is not repeated.
 | Command 1 stopped early | Run the same command again; it resumes. |
 | Fewer than 25 S-tables | Command 4 was skipped (S13 needs it), or command 1 did not finish. |
 | `results/predictions/ is empty` at Step 5 of Step 6 | Command 1 must finish before command 5 has anything to read. |
-| Out of disk space | The full study writes about 0.3 GB of results; the raw dataset is the larger item at roughly 1 GB. |
 
 ---
 
