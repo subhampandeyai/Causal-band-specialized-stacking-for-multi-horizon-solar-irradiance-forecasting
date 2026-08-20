@@ -19,7 +19,7 @@ Method: split conformal (Vovk; Lei et al. 2018).
 
 Run:
     python conformal_causal.py
-Output: outputs/reports/paper_tables/conformal_causal.csv  (+ .tex)
+Output: results/fame_causal_conformal.csv  (+ conformal_causal.tex)
 """
 import warnings; warnings.filterwarnings("ignore")
 from pathlib import Path
@@ -114,7 +114,10 @@ def main():
                                  empirical=round(cov*100,1),
                                  width_W_m2=round(width*1000,1)))  # kW->W
                 print(f"  H{h} {model:<12} {int((1-a)*100)}%  emp={cov*100:5.1f}%  width={width*1000:7.1f} W/m2")
-    out=pd.DataFrame(rows); out.to_csv(OUT/"conformal_causal.csv",index=False)
+    out=pd.DataFrame(rows)
+    # s03_uncertainty.py cross-checks the manuscript Station-5 intervals against
+    # results/fame_causal_conformal.csv; write that name so table S13 is produced.
+    out.to_csv(OUT/"fame_causal_conformal.csv",index=False)
 
     # LaTeX (station 5 H1, the headline table)
     sub=out[out.horizon=="H1"]
@@ -127,7 +130,7 @@ def main():
         tex.append(f"{r['model']} & {r['nominal']} & {r['empirical']}\\% & {r['width_W_m2']} \\\\\\hline")
     tex+=[r"\end{tabular}",r"\end{table}"]
     open(OUT/"conformal_causal.tex","w").write("\n".join(tex))
-    print(f"\nWrote {OUT/'conformal_causal.csv'} and .tex")
+    print(f"\nWrote {OUT/'fame_causal_conformal.csv'} and .tex")
     print("These REPLACE the old leaky 158.5/486 numbers. All causal now.")
 
 if __name__=="__main__": main()

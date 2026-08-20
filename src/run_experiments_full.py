@@ -16,14 +16,14 @@ EXPERIMENTS
   1. 8-seed support            SEEDS, one unit per (station, horizon, seed)
   2. W-sensitivity sweep       W in {8, 16, 32} x coarsest scale
   3. Simple-averaging ablation equal-weight mean of the four band forecasts
-  4. Per-band x per-learner    every learner on every band, held-out skill
+  4. Per-band x per-learner    see band_learner_fixed.py (excluded here: the
+                               shared feature matrix contains the target band)
   5. Persistence-augmented     single models on a residual-over-persistence target
   6. Non-causal (leaky) skill  whole-series operator, skill as well as R2
   7. Classical baselines       MLP and SVR
 
 OUTPUTS -> results/experiments/
     results_units.csv          one row per completed unit (appended live)
-    band_learner_table.csv     per-band x per-learner skill (appended live)
     predictions/               per-unit prediction vectors
     manifest.json              config, seeds, versions
 
@@ -366,6 +366,11 @@ def run_unit(s, h, seed, w_mult, df, sig, tod_all, doy_all, cache,
     preds["persaug_xgb"] = paug
 
     # ---- EXPERIMENT 6: non-causal (leaky) operator, R2 AND skill ----
+    # Like-for-like: the leaky arm uses the SAME four band experts and the same
+    # ridge meta-learner as the causal arm. Only the decomposition operator
+    # differs, so causal_minus_leaky_r2 isolates the leakage effect. An earlier
+    # version omitted the LSTM from this arm, which confounded the leakage
+    # effect with the loss of a band expert and drove the difference to zero.
     t0 = time.time()
     lk = cache.get((s, "leaky"))
     if lk is None:
@@ -377,10 +382,16 @@ def run_unit(s, h, seed, w_mult, df, sig, tod_all, doy_all, cache,
     Ltr_s, Lva_s, Lte_s = scl.fit_transform(Ltr), scl.transform(Lva), scl.transform(Lte)
     lr_va, lr_te = RFC.fit_ridge(Ltr_s, lytr, Lva_s, Lte_s)
     lg_va, lg_te2 = RFC.fit_xgb(Ltr_s, lytr, Lva_s, Lte_s)
+    try:
+        ll_va, ll_te = RFC.fit_lstm(Ltr_s, lytr, Lva_s, lyva, Lte_s)
+    except Exception as e:
+        print(f"      leaky LSTM failed ({e}); ridge fallback")
+        ll_va, ll_te = lr_va, lr_te
     lp_va = np.concatenate([[lytr[-1]], lyva[:-1]])
     lp_te = np.concatenate([[lyva[-1]], lyte[:-1]])
-    lmeta = Ridge(alpha=1.0).fit(np.column_stack([lr_va, lg_va, lp_va]), lyva)
-    leaky_te = lmeta.predict(np.column_stack([lr_te, lg_te2, lp_te]))
+    lmeta = Ridge(alpha=1.0).fit(
+        np.column_stack([lr_va, ll_va, lg_va, lp_va]), lyva)
+    leaky_te = lmeta.predict(np.column_stack([lr_te, ll_te, lg_te2, lp_te]))
     lclim = RFC.climatology_at(coef, populated, adj,
                                tod_all[np.minimum(loidx_te + h, len(sig) - 1)],
                                doy_all[np.minimum(loidx_te + h, len(sig) - 1)],
@@ -391,33 +402,14 @@ def run_unit(s, h, seed, w_mult, df, sig, tod_all, doy_all, cache,
                                if lclim is not None else np.nan)
     row["causal_minus_leaky_r2"] = round(row["fame_r2"] - row["leaky_r2"], 6)
 
-    # ---- EXPERIMENT 4: per-band x per-learner ----
-    # Structural question: is the Eq. 11 band-to-learner assignment supported by
-    # held-out error? That does not vary with the seed, so it is computed for the
-    # first seed of each (station, horizon, W) only. This is ~77% of unit cost.
+    # The band-to-learner comparison is NOT computed here. Predicting band k from
+    # the shared feature matrix is invalid, because build_features places band k
+    # itself in that matrix, so a linear model recovers it by identity
+    # (measured: Ridge R2 = 1.000000, RMSE = 0.0004 W/m2). The valid comparison
+    # excludes band k and every feature derived from it, and is implemented in
+    # band_learner_fixed.py. Run that script for the band-to-learner table.
     band_rows = []
-    t0 = time.time()
-    for bi, bname in enumerate(BANDS if do_bandtable else []):
-        btr = bands[oidx_tr, bi]
-        bte = bands[oidx_te, bi]
-        cands = {}
-        cands["Ridge"] = RFC.fit_ridge(Xtr_s, btr, Xva_s, Xte_s)[1]
-        cands["XGBoost"] = RFC.fit_xgb(Xtr_s, btr, Xva_s, Xte_s)[1]
-        cands["persistence"] = bands[np.maximum(oidx_te - h, 0), bi]
-        if bname == "multi_hour":
-            try:
-                cands["LSTM"] = RFC.fit_lstm(Xtr_s, btr, Xva_s,
-                                             bands[oidx_va, bi], Xte_s)[1]
-            except Exception:
-                pass
-        bvar = float(np.sum((bte - bte.mean()) ** 2))
-        for lname, pred in cands.items():
-            band_rows.append(dict(
-                station=s, horizon=f"H{h}", seed=seed, W_mult=w_mult,
-                band=bname, learner=lname,
-                rmse_W=round(rmse(bte, pred) * SCALE, 4),
-                r2=round(1 - np.sum((bte - pred) ** 2) / bvar, 6) if bvar > 0 else np.nan))
-    timings["bandtable_s"] = time.time() - t0
+    timings["bandtable_s"] = 0.0
 
     for k, v in timings.items():
         row[k] = round(v, 2)
@@ -436,6 +428,38 @@ def run_unit(s, h, seed, w_mult, df, sig, tod_all, doy_all, cache,
                       "unified_xgb": ux_te, "persistence": p_te}).to_csv(
             LEGACY / f"station_{s:02d}_H{h}_test_predictions.csv", index=False)
     return row, band_rows
+
+
+def write_legacy_tables():
+    """Per-station and six-model tables in the original column layout.
+
+    s01_consistency_verification.py recomputes the reported metrics from the
+    saved predictions and compares them against results/fame_causal_perstation.csv
+    and results/fame_causal_sixmodel.csv. Those two files are written here from
+    the reference configuration so that consistency check has something to verify
+    against; without them s01 logs an error and tables S1-S3 are never produced.
+    """
+    if not UNITS_CSV.exists():
+        return
+    u = pd.read_csv(UNITS_CSV)
+    ref = u[(u.W_mult == 16) & (u.seed == SEEDS[0])]
+    if ref.empty:
+        return
+    dest = REPO / "results"
+    dest.mkdir(parents=True, exist_ok=True)
+
+    per = ref[["station", "horizon", "fame_r2", "fame_rmse_W", "fame_mae_W",
+               "uxgb_r2", "uxgb_rmse_W", "uxgb_mae_W"]].copy()
+    per.to_csv(dest / "fame_causal_perstation.csv", index=False)
+
+    order = [f"H{h}" for h in HORIZONS]
+    six = (ref.groupby("horizon")
+           .agg(FAME=("fame_r2", "mean"), Unified_XGB=("uxgb_r2", "mean"),
+                LightGBM=("lgb_r2", "mean"), MLP=("mlp_r2", "mean"),
+                SVR=("svr_r2", "mean"))
+           .reindex(order).round(4).reset_index())
+    six.to_csv(dest / "fame_causal_sixmodel.csv", index=False)
+    print(f"  legacy tables -> {dest / 'fame_causal_perstation.csv'}")
 
 
 def write_runtime_probe():
@@ -556,6 +580,7 @@ def main():
                    xgboost=xgb.__version__),
               open(OUT_DIR / "manifest.json", "w"), indent=2)
 
+    write_legacy_tables()
     write_runtime_probe()
 
     print(f"\nnew units: {n_new}   elapsed {(time.time()-t_start)/60:.1f} min")

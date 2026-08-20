@@ -18,3 +18,17 @@ supplementary/logs/
 Thumbs.db
 .idea/
 .vscode/
+
+# Generated results are not published; regenerate with the commands in README.md
+results/final file/
+results/final file.zip
+results/experiments/
+results/predictions/
+results/band_learner/
+results/*.csv
+results/*.tex
+supplementary/tables/
+supplementary/figures/
+supplementary/statistics/
+!**/.gitkeep
+
