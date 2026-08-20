@@ -14,21 +14,20 @@ grid, so the grid must finish first.
 # Stage 0: raw Excel to prepared station series
 python scripts/reproduce_manuscript.py --stage0
 
-# Reference configuration: seed 42, W = 16, all stations and horizons
-python src/run_experiments_full.py --seeds 42 --w 16
+# 1. Full seed study: 8 seeds, all stations and horizons, W = 16.
+#    Produces the skill, error, ablation, leaky-vs-causal and baseline columns.
+python src/run_experiments_full.py --seeds 42,7,123,2024,31,89,500,1 --w 16
 
-# Full seed study: 8 seeds x 3 window lengths, all stations and horizons
-# (tens of hours on CPU; the band x learner table is computed for the first
-#  seed of each cell only, so later seeds cost substantially less)
-python src/run_experiments_full.py
+# 2. Window-length sensitivity on a representative subset
+python src/run_experiments_full.py --seeds 42 --w 8,16,32 --stations 1,5,7 --horizons 1,16,96
 
-# Window-length sensitivity
-python src/run_experiments_full.py --seeds 42 --w 8,16,32
-
-# Band-to-learner comparison (leakage-free)
+# 3. Band-to-learner comparison (excludes the target band from the features)
 python src/band_learner_fixed.py --stations 1,2,4,5,6,7,8
 
-# Statistics, uncertainty, robustness, band spectra, report
+# 4. Split-conformal intervals for the Station-5 cross-check (table S13)
+python src/conformal_causal.py
+
+# 5. Statistics, uncertainty, robustness, band spectra, tables S1-S25, figures
 python scripts/reproduce_supplementary.py
 ```
 
@@ -44,10 +43,11 @@ python scripts/reproduce_supplementary.py
 | Leaky vs causal skill and inflation | `run_experiments_full.py` → `bands_leaky` | `results/experiments/results_units.csv` |
 | MLP and SVR baselines | `run_experiments_full.py` → `fit_mlp`, `fit_svr` | `results/experiments/results_units.csv` |
 | W-sensitivity | `run_experiments_full.py --w 8,16,32` | `results/experiments/results_units.csv` |
-| Band × learner comparison | `src/band_learner_fixed.py` | `results/band_learner/band_learner_fixed.csv` |
+| Band x learner comparison | `src/band_learner_fixed.py` | `results/band_learner/band_learner_fixed.csv` |
 | Wilcoxon p-values, Holm correction, Cohen's d | `supplementary/analysis_code/s02_statistical_validation.py` | `supplementary/tables/S6`, `S7` |
 | Bootstrap confidence intervals | `s02_statistical_validation.py` | `supplementary/tables/S8` |
 | Win/loss record | `s02_statistical_validation.py` | `supplementary/tables/S9` |
+| Station-5 conformal cross-check (S13) | `src/conformal_causal.py` | `results/fame_causal_conformal.csv` |
 | Conformal coverage, width, Winkler, all stations | `s03_uncertainty.py` | `supplementary/tables/S10`–`S13` |
 | Per-station and per-horizon robustness | `s04_robustness.py` | `supplementary/tables/S14`–`S19` |
 | Per-pair metrics | `s02`, `s04` | `supplementary/tables/S20` |
