@@ -162,6 +162,20 @@ completed work.
 
 Commands 3, 4 and 5 are short; if one fails, just run it again.
 
+### Results produced before the reference columns existed
+
+If the prediction files were written by an earlier version, they carry only the
+persistence column and the analyses fall back to it. Add the missing columns
+from the grid output, then re-run the analyses:
+
+`ash
+python src/backfill_reference_columns.py
+python scripts/reproduce_supplementary.py
+`
+
+Nothing is retrained; the columns are copied across and the run takes about a
+minute.
+
 ---
 
 ## Step 7 — Where the results are
