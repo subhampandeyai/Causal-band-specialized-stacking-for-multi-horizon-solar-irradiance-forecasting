@@ -197,9 +197,18 @@ def main():
              available_in="not run for this revision"),
         dict(analysis="Multi-seed variance of the proposed model",
              computable_from_frozen_outputs=False,
-             reason="the manuscript's run used a single fixed seed (42); additional seeds "
-                    "require retraining",
-             available_in="not run for this revision"),
+             reason="seed variance requires retraining rather than post-processing; the "
+                    "grid was therefore executed over eight seeds "
+                    "(42, 7, 123, 2024, 31, 89, 500, 1), giving 336 station-horizon-seed "
+                    "units at W = 16",
+             available_in="results/experiments/results_units.csv (executed)"),
+        dict(analysis="Band-to-learner suitability comparison",
+             computable_from_frozen_outputs=False,
+             reason="the released files store the fused forecast, so alternative learners "
+                    "cannot be scored per band without retraining; the assignment is "
+                    "instead justified spectrally by the measured in-band energy of each "
+                    "band",
+             available_in="supplementary/statistics/Band_Spectra/ (spectral evidence)"),
         dict(analysis="Post-hoc fusion of saved predictions",
              computable_from_frozen_outputs=True,
              reason="operates purely on stored prediction vectors",

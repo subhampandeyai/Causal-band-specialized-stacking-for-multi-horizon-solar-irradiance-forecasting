@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 """
 Reproduce every supplementary table and figure.
 
@@ -46,6 +46,8 @@ STAGES = [
      "Post-hoc fusion study and the scope declaration"),
     ("s08_band_spectral_analysis",
      "Frequency content of each wavelet band"),
+    ("s12_cost_benefit",
+     "Per-model training and inference cost against forecast quality"),
     ("s06_report",
      "Consolidate the supplementary tables and build the PDF"),
 ]
