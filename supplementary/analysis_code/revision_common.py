@@ -97,6 +97,20 @@ def load_pair(station: int, horizon: str) -> pd.DataFrame | None:
     return df
 
 
+def skill_reference(df: pd.DataFrame) -> np.ndarray:
+    """The denominator of the skill score.
+
+    Climatology is used wherever the prediction file carries it. Persistence is
+    a valid reference only at short horizons: beyond roughly two hours its error
+    exceeds the target's own standard deviation, so a skill score against it no
+    longer separates models. Files written before the climatology reference was
+    added fall back to the persistence column.
+    """
+    if "ref_clim" in df.columns:
+        return df["ref_clim"].values
+    return df["persistence"].values
+
+
 def available_pairs() -> list[tuple[int, str]]:
     return [(s, h) for s in STATIONS for h in HORIZONS if pred_path(s, h).exists()]
 

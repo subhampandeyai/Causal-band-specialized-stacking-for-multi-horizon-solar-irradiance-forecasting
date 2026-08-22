@@ -424,8 +424,16 @@ def run_unit(s, h, seed, w_mult, df, sig, tod_all, doy_all, cache,
     # the reference configuration so those stages run unchanged.
     if seed == SEEDS[0] and w_mult == 16:
         LEGACY.mkdir(parents=True, exist_ok=True)
-        pd.DataFrame({"y_true": yte, "fame": fame_te,
-                      "unified_xgb": ux_te, "persistence": p_te}).to_csv(
+        leg = {"y_true": yte, "fame": fame_te,
+               "unified_xgb": ux_te, "persistence": p_te}
+        # The supplementary stages score skill against a reference. Persistence
+        # ceases to be a valid one beyond about two hours, where its error
+        # exceeds the target's own standard deviation, so the climatology
+        # reference is carried through here and used as the primary denominator.
+        if ref_clim is not None:
+            leg["ref_clim"] = ref_clim
+        leg["ref_persist"] = ref_persist
+        pd.DataFrame(leg).to_csv(
             LEGACY / f"station_{s:02d}_H{h}_test_predictions.csv", index=False)
     return row, band_rows
 

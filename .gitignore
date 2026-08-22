@@ -31,4 +31,5 @@ supplementary/tables/
 supplementary/figures/
 supplementary/statistics/
 !**/.gitkeep
-
+results/*.zip
+results/final file-rejected-forget/

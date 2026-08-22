@@ -156,7 +156,7 @@ def main():
         for name, mask in bins:
             if mask.sum() < 20:
                 continue
-            yy = y[mask]; pers = d.persistence.values[mask]
+            yy = y[mask]; pers = rc.skill_reference(d)[mask]
             rec = dict(station=s, horizon=h, regime=name, n=int(mask.sum()),
                        mean_irradiance_W=float(yy.mean()) * rc.SCALE)
             for m in rc.MODELS:

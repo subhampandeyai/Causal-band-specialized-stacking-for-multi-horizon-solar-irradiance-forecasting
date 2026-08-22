@@ -44,7 +44,7 @@ def per_pair_metrics() -> pd.DataFrame:
         if d is None:
             continue
         y = d.y_true.values
-        pers = d.persistence.values
+        pers = rc.skill_reference(d)   # climatology where available
         rec = dict(station=s, horizon=h, n_test=len(d),
                    sigma_y_W=float(np.std(y)) * rc.SCALE)
         for m in rc.MODELS:
